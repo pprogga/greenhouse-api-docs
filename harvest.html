@@ -10567,12 +10567,13 @@ X-RateLimit-Remaining: 49
 
           <h1 id="scheduled-interviews">Scheduled Interviews</h1>
 
-<h2 id="the-scheduled-interview-object">The scheduled interview object</h2>
+<h2 id="the-scheduled-interview-object">The Scheduled Interview object</h2>
 
 <p>Interviews that have been scheduled for the specified application. Note that all-day interviews will have a start and end date with no specified time.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event123"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -10597,8 +10598,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -10624,10 +10627,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>organizer</td><td>The <a href="#users">user</a> who is the organizer for this interview</td></tr>
 <tr>
-<td>interviewers</td><td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed.</td></tr>
+<td>interviewers</td><td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed. This object will also contain the interviewer&rsquo;s <code class="prettyprint">response_status</code> which indicates how they&rsquo;ve responded to the interview invitation (one of <code class="prettyprint">needs_action</code>, <code class="prettyprint">declined</code>, <code class="prettyprint">tentative</code>, or <code class="prettyprint">accepted</code>).</td></tr>
 </tbody></table>
 
-<h2 id="get-list-interviews">GET: List Interviews</h2>
+<h2 id="get-list-scheduled-interviews">GET: List Scheduled Interviews</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -10636,6 +10639,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -10660,8 +10664,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee123"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -10669,6 +10675,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432905</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event456"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -10691,8 +10698,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3412</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee456"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Pace"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youalleverybody@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -10734,9 +10743,13 @@ X-RateLimit-Remaining: 49
 <td>ends_before</td><td>Only return scheduled interviews scheduled to end before this timestamp.</td></tr>
 <tr>
 <td>ends_after</td><td>Only return scheduled interviews scheduled to end at or after this timestamp.</td></tr>
+<tr>
+<td>external_event_id</td><td>Only return the scheduled interview that has the specified <code class="prettyprint">external_event_id</code>.</td></tr>
+<tr>
+<td>actionable</td><td>Only certain scheduled interviews can be updated/deleted. They must have been created through Harvest, have a status of &ldquo;scheduled&rdquo; or &ldquo;awaiting feedback,&rdquo; and belong to an active application. When set to true, this filter will return only scheduled interviews that meet those criteria.</td></tr>
 </tbody></table>
 
-<h2 id="get-list-interviews-for-application">GET: List Interviews for Application</h2>
+<h2 id="get-list-scheduled-interviews-for-application">GET: List Scheduled Interviews for Application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -10744,6 +10757,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -10768,8 +10782,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee123"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -10777,6 +10793,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event456"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -10799,8 +10816,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3412</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee456"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Pace"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youalleverybody@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -10834,18 +10853,23 @@ X-RateLimit-Remaining: 49
 <td>updated_before</td><td>Return only scheduled interviews that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_after</td><td>Return only scheduled interviews that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>external_event_id</td><td>Only return the scheduled interview that has the specified <code class="prettyprint">external_event_id</code>.</td></tr>
+<tr>
+<td>actionable</td><td>Only certain scheduled interviews can be updated/deleted. They must have been created through Harvest, have a status of &ldquo;scheduled&rdquo; or &ldquo;awaiting feedback,&rdquo; and belong to an active application. When set to true, this filter will return only scheduled interviews that meet those criteria.</td></tr>
 </tbody></table>
 
 <p><br>
 <a href="#the-scheduled-interview-object">See noteworthy response attributes.</a></p>
 
-<h2 id="get-retrieve-interview">GET: Retrieve Interview</h2>
+<h2 id="get-retrieve-scheduled-interview">GET: Retrieve Scheduled Interview</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews/{id}'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event123"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -10870,8 +10894,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee123"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -10893,6 +10919,264 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td><td>The ID of the scheduled interview to retrieve</td></tr>
 </tbody></table>
+
+<h2 id="post-create-scheduled-interview">Post: Create Scheduled Interview</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews'</span>
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102717462</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8055374</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w"> </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucius.barbarossa.46444@example.com"</span><span class="p">,</span><span class="w"> </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"declined"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T13:15:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T14:15:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_event_id_1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109170954</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102717457</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_event_id_1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T13:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T14:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T19:22:07.302Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-03T20:45:14.320Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8055374</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telluride"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ Telluride"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ Telluride"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"champ.telluride.102361@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46444</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAA1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucius Barbarossa"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucius.barbarossa.46444@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"declined"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a new Scheduled Interview. </p>
+
+<p><a href="#the-scheduled-interview-object">See noteworthy response attributes.</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/scheduled_interviews</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Will become the interview organizer. The user must have permission to manage the associcated application.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>application_id</td><td>Yes</td><td>integer</td><td>The id of the application for which we will scheduled an interview.</td></tr>
+<tr>
+<td>interview_id</td><td>Yes</td><td>integer</td><td>The id of the interview we&rsquo;d like to schedule. This id can be found in the <a href="#the-job-stage-object">job stage object</a>. It refers to an interview type (e.g. &ldquo;Executive Interview&rdquo; or &ldquo;On-site Interview&rdquo;) that is associated with a hiring plan&rsquo;s interview step.  This differs from a &ldquo;Scheduled Interview&rdquo; which refers to an instantiated interview that is associated with an application, interviewers, start time, etc.</td></tr>
+<tr>
+<td>interviewers[]</td><td>Yes</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted). Each user must be a valid interviewer for the hiring plan.</td></tr>
+<tr>
+<td>start</td><td>Yes</td><td>string</td><td>A datetime specifying when the interview starts. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
+<tr>
+<td>end</td><td>Yes</td><td>string</td><td>A datetime specifying when the interview ends. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
+<tr>
+<td>external_event_id</td><td>Yes</td><td>string</td><td>A unique identifer for this interview.</td></tr>
+<tr>
+<td>location</td><td>No</td><td>string</td><td>A textual description of the location of the interview.</td></tr>
+</tbody></table>
+
+<aside class="notice">
+    There may be a delay between when Greenhouse receives the POST: Create Scheduled Interview request and when Greenhouse creates the full Scheduled Interview record, which will result in a truncated API response. The truncated response body will contain the id of the newly Scheduled Interview. You can retrieve the full Scheduled Interview record by requesting the Scheduled Interview ID with the GET: Scheduled Interview endpoint. If you receive a 404 error from the GET: Scheduled Interview endpoint, this indicates that the full Scheduled Interview record is still not available. Until the Scheduled Interview record has been made fully-available in the API, please continue to request the record until the API returns a successful response. Our recommendation is to perform this check every 30 seconds until the data becomes available.
+</aside>
+
+<h2 id="patch-update-scheduled-interview">Patch: Update Scheduled Interview</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews/{id}'</span>
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w"> </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"needs_action"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucius.barbarossa.46444@example.com"</span><span class="p">,</span><span class="w"> </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"declined"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-12T13:15:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-12T14:15:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_event_id_0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dunder Mifflin, Scranton"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109170954</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102717457</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external_event_id_0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T13:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-12T14:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-17T19:22:07.302Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-03T20:45:14.320Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8055374</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telluride"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ Telluride"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102361</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Champ Telluride"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"champ.telluride.102361@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46444</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAA1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucius Barbarossa"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucius.barbarossa.46444@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"response_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"declined"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Update a Scheduled Interview. Note that only Scheduled Interviews created through Harvest can be updated. Additionally, you can 
+only update Scheduled Interviews in the following statues: Scheduled, Awaiting Feedback.</p>
+
+<p><a href="#the-scheduled-interview-object">See noteworthy response attributes.</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Will become the interview organizer. The user must have permission to manage the associcated application.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>interviewers[]</td><td>No</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted). Each user must be a valid interviewer for the hiring plan.</td></tr>
+<tr>
+<td>start</td><td>No</td><td>string</td><td>A datetime specifying when the interview starts. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
+<tr>
+<td>end</td><td>No</td><td>string</td><td>A datetime specifying when the interview ends. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
+<tr>
+<td>external_event_id</td><td>No</td><td>string</td><td>A unique identifer for this interview.</td></tr>
+<tr>
+<td>location</td><td>No</td><td>string</td><td>A textual description of the location of the interview.</td></tr>
+</tbody></table>
+
+<h2 id="delete-remove-scheduled-interview">Delete: Remove Scheduled Interview</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interview 109170954 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Delete a Scheduled Interview by <code class="prettyprint">id</code>. Note that only Scheduled Interviews created through harvest can be deleted. Additionally, you can 
+only delete Scheduled Interviews in the following statues: Scheduled, Awaiting Feedback.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<p><br></p>
 
           <h1 id="scorecards">Scorecards</h1>
 
