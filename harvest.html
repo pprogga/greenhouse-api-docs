@@ -80,10 +80,10 @@ analytics.page()
       <div class="content">
         
           <h1 id="introduction">Introduction</h1>
-<pre class="highlight plaintext"><code>  _          _ _             
- | |__   ___| | | ___        
- | '_ \ / _ \ | |/ _ \       
- | | | |  __/ | | (_) |      
+<pre class="highlight plaintext"><code>  _          _ _
+ | |__   ___| | | ___
+ | '_ \ / _ \ | |/ _ \
+ | | | |  __/ | | (_) |
  |_| |_|\___|_|_|\___/     _
  __      _____  _ __| | __| |
  \ \ /\ / / _ \| '__| |/ _` |
@@ -96,9 +96,9 @@ analytics.page()
 <p>The Harvest API was designed to allow our customers to export their data from Greenhouse. However, it can also be used to&hellip;</p>
 
 <ol>
-<li>Update candidate information.</li>
-<li>Add attachments to candidate profiles.</li>
-<li>Advance, move, and reject applications.</li>
+<li> Update candidate information.</li>
+<li> Add attachments to candidate profiles.</li>
+<li> Advance, move, and reject applications.</li>
 </ol>
 
 <p>We have usage examples for cURL (and soon, Ruby)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
@@ -132,9 +132,9 @@ analytics.page()
 
 <p>Harvest uses Basic Auth over HTTPS for authentication. The username is your Greenhouse API token and the password should be blank. Unauthenticated requests will return an HTTP 401 response.</p>
 
-<p>Harvest API keys can be obtained in Greenhouse.  In order to create a Harvest API key, a user must be granted the &ldquo;Can manage ALL organization&rsquo;s API Credentials&rdquo; in the &ldquo;Developer permission&rdquo; section. That user can then go Configure &gt;&gt; Dev Center &gt;&gt; API Credential Management.  From there, you can create a Harvest API key and choose which endpoints it may access.</p>
+<p>Harvest API keys can be obtained in Greenhouse. In order to create a Harvest API key, a user must be granted the &ldquo;Can manage ALL organization&rsquo;s API Credentials&rdquo; in the &ldquo;Developer permission&rdquo; section. That user can then go Configure &gt;&gt; Dev Center &gt;&gt; API Credential Management. From there, you can create a Harvest API key and choose which endpoints it may access.</p>
 
-<p><strong>Important Note:</strong> Users with Harvest API keys may access all the data in the endpoint.  Access to data in Harvest is binary: everything or nothing. Harvest API keys should be given to internal developers with this understanding and to third parties with caution.  Each key should only be allowed to access the endpoints it absolutely needs.</p>
+<p><strong>Important Note:</strong> Users with Harvest API keys may access all the data in the endpoint. Access to data in Harvest is binary: everything or nothing. Harvest API keys should be given to internal developers with this understanding and to third parties with caution. Each key should only be allowed to access the endpoints it absolutely needs.</p>
 
 <h3 id="authorization-header">Authorization header</h3>
 
@@ -191,7 +191,7 @@ X-RateLimit-Remaining: 49
 
 <p>Note that when this header is not set, there is only one page, the first page, of results.</p>
 
-<p>As of February 2017,  we are transitioning to a new method for paging while maintaining backwards compatibility.  Currently, the new method <em>only</em> supports providing a <code class="prettyprint">next</code> link and is used by the following endpoints:</p>
+<p>As of February 2017, we are transitioning to a new method for paging while maintaining backwards compatibility. Currently, the new method <em>only</em> supports providing a <code class="prettyprint">next</code> link and is used by the following endpoints:</p>
 
 <ul>
 <li><a href="#get-list-eeoc">GET: List EEOC</a></li>
@@ -210,8 +210,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Validation error"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Must be one of: candidate, prospect"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Must be one of: candidate, prospect"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -239,13 +239,25 @@ X-RateLimit-Remaining: 49
 <td>Error Code</td><td>Meaning</td></tr>
 </thead><tbody>
 <tr>
-<td>401</td><td>Unauthorized &ndash; Invalid Harvest API key.  Check to make sure you&rsquo;re passing it in via the <code class="prettyprint">Authorization</code> header (Basic Auth)</td></tr>
+<td>401</td><td>Unauthorized &ndash; Invalid Harvest API key. Check to make sure you&rsquo;re passing it in via the <code class="prettyprint">Authorization</code> header (Basic Auth)</td></tr>
 <tr>
 <td>403</td><td>Forbidden &ndash; You do not have access to that record.</td></tr>
 <tr>
 <td>404</td><td>Not Found &ndash; Resource not found</td></tr>
 <tr>
 <td>500</td><td>Server Error &ndash; We had a problem with our server. Try again later or contact us: support@greenhouse.io</td></tr>
+</tbody></table>
+
+<h2 id="harvest-change-log">Harvest Change Log</h2>
+
+<table><thead>
+<tr>
+<td>Date</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>Feb 1, 2019 11:28:00AM</td><td>Added partial response (HTTP Status code 202) to <a href="#post-create-job">POST: Create Job</a></td></tr>
+<tr>
+<td>Jan 8, 2019 12:00:00PM</td><td>Added <code class="prettyprint">can_email</code> flag to <a href="#the-candidate-object">Candidates Endpoints</a></td></tr>
 </tbody></table>
 
           <h1 id="activity-feed">Activity Feed</h1>
