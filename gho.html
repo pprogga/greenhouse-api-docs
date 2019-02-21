@@ -1597,7 +1597,7 @@ mutation {
 
 <h2 id="employee">Employee</h2>
 
-<p>A single Employee that works for your company.</p>
+<p>A single Employee that works for your company. Employees have first class fields (e.g. title, start_date, email), and they also hold custom_field_values for user defined custom fields. These secondary values are held within the customFieldValues array.</p>
 
 <table><thead>
 <tr>
@@ -2610,7 +2610,7 @@ mutation {
 <p>The actual value of a Custom Field Value. This type is capable of holding both Strings and Integers. Its content will
 depend on the fieldType of its corresponding customField.</p>
 
-<h3 id="text-long_text-confirmable">text, long_text, confirmable</h3>
+<h3 id="text-long_text">text, long_text</h3>
 
 <ul>
 <li>Allowed Type(s): String</li>
@@ -2699,8 +2699,6 @@ depend on the fieldType of its corresponding customField.</p>
 </thead><tbody>
 <tr>
 <td>ADDRESS</td><td>Displayed as group of inputs. Stored as JSON.</td></tr>
-<tr>
-<td>CONFIRMABLE</td><td>Displayed as a text field where the user has to enter the value twice. Stored as a String.</td></tr>
 <tr>
 <td>CONTACT</td><td>Displayed as group of inputs. Stored as JSON.</td></tr>
 <tr>
