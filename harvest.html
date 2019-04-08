@@ -11203,6 +11203,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T21:59:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -11301,7 +11308,9 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 <tr>
 <td>candidate_id</td><td>The ID of the <a href="#candidates">candidate</a> whom this scorecard was written for.</td></tr>
 <tr>
-<td>submitted_by</td><td>The <a href="#users">user</a> who submitted this scorecard.</td></tr>
+<td>submitted_by</td><td>The <a href="#users">user</a> who submitted this scorecard.  Note that this user may not necessarily be the the interviewer, since scorecards can be submitted on behalf of other users.</td></tr>
+<tr>
+<td>interviewer</td><td>The <a href="#users">user</a> who interviewed the candidate.</td></tr>
 <tr>
 <td>overall_recommendation</td><td>One of: <code class="prettyprint">definitely_not</code>, <code class="prettyprint">no</code>, <code class="prettyprint">yes</code>, <code class="prettyprint">strong_yes</code>, <code class="prettyprint">no_decision</code></td></tr>
 <tr>
@@ -11331,6 +11340,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T21:59:51Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
@@ -11431,6 +11447,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
         </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dane Doe"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"034509364"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="w">
@@ -11569,6 +11592,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T21:59:51Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -11668,6 +11698,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
         </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dane Doe"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"034509364"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="w">
@@ -11798,6 +11835,13 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austen"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T21:59:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"overall_recommendation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
