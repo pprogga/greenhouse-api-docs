@@ -257,8 +257,6 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>Apr 25, 2019 5:00:00PM</td><td>Added ability to change prospect pool and stage via <a href="#patch-update-application">PATCH: Update Application</a></td></tr>
-<tr>
 <td>Apr 8 , 2019 04:00:00PM</td><td>Added <code class="prettyprint">interviewer</code> to <a href="#the-scorecard-object">Scorecard object</a></td></tr>
 <tr>
 <td>Mar 18, 2019 03:30:00PM</td><td>Added ability to delete a Candidate Tag via <a href="#delete-destroy-a-candidate-tag">DELETE: Destroy a Candidate Tag</a></td></tr>
@@ -986,10 +984,6 @@ X-RateLimit-Remaining: 49
 <td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
 <tr>
 <td>custom_fields[]</td><td>No</td><td>custom_field</td><td>Array of hashes containing new custom field values.  Passing an empty array does nothing.</td></tr>
-<tr>
-<td>prospect_pool_id</td><td>No</td><td>integer</td><td>The ID of the prospect pool for the application</td></tr>
-<tr>
-<td>prospect_stage_id</td><td>No</td><td>integer</td><td>The ID of the prospect pool stage for the application</td></tr>
 </tbody></table>
 
 <h2 id="post-advance-application">POST: Advance Application</h2>
