@@ -201,6 +201,11 @@ X-RateLimit-Remaining: 49
 <li><a href="#get-list-job-openings">GET: List Job Openings</a></li>
 <li><a href="#get-list-approvals-for-job">GET: List Approvals For Job</a></li>
 <li><a href="#get-pending-approvals-for-user">GET: Pending Approvals For User</a></li>
+<li><a href="#get-list-demographic-questions">GET: List Demographic Questions</a></li>
+<li><a href="#get-list-demographic-answer-options">GET: List Demographic Answer Options</a></li>
+<li><a href="#get-list-demographic-answer-options-for-demographic-question">GET: List Demographic Answer Options For Demographic Question</a></li>
+<li><a href="#get-list-demographic-answers">GET: List Demographic Answers</a></li>
+<li><a href="#get-list-demographic-answers-for-application">GET: List Demographic Answers for Application</a></li>
 </ul>
 
 <aside class="warning">Since paging mechanisms may differ per paginated endpoint and may change in the future, it is important to use the Link headers and not page manually by changing the paging-related query parameters.</aside>
@@ -256,6 +261,8 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
+<tr>
+<td>May 7, 2019 3:30:00 PM</td><td>Added <a href="#demographic-data">Demographic Data endpoints</a></td></tr>
 <tr>
 <td>Apr 8 , 2019 04:00:00PM</td><td>Added <code class="prettyprint">interviewer</code> to <a href="#the-scorecard-object">Scorecard object</a></td></tr>
 <tr>
@@ -5272,6 +5279,506 @@ X-RateLimit-Remaining: 49
 <p><br></p>
 
 <p>* Note this does not return a list of option_ids that were not found. It only returns a number of options that were not processed.  If you were to run the same exact command twice in a row, the only difference would be that on the second run, the message would inform you that an ID was not found.</p>
+
+          <h1 id="demographic-data">Demographic Data</h1>
+
+<p>Demographic questions and answers submitted during the application process. For more information on Greenhouse Inclusion, please visit <a href="https://www.greenhouse.io/inclusion">https://www.greenhouse.io/inclusion</a>.</p>
+
+<h2 id="the-demographic-question-object">The Demographic Question object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What is your favorite color?"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The demographic question&rsquo;s unique identifier</td></tr>
+<tr>
+<td>translations.language</td><td>Only <code class="prettyprint">en</code> (English) is supported at this time.</td></tr>
+<tr>
+<td>translations.name</td><td>The question text</td></tr>
+<tr>
+<td>active</td><td>If <code class="prettyprint">false</code>, the question has been deleted.</td></tr>
+</tbody></table>
+
+<h2 id="the-demographic-answer-option-object">The Demographic Answer Option object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The demographic answer option&rsquo;s unique identifier</td></tr>
+<tr>
+<td>translations.language</td><td>Only <code class="prettyprint">en</code> (English) is supported at this time.</td></tr>
+<tr>
+<td>translations.name</td><td>The answer option text.</td></tr>
+<tr>
+<td>active</td><td>If <code class="prettyprint">false</code>, the answer option has been deleted.</td></tr>
+<tr>
+<td>free_form</td><td>If <code class="prettyprint">true</code>, the answer option allows free-form user input.</td></tr>
+<tr>
+<td>demographic_question_id</td><td>The demographic question for which the answer option belongs to.</td></tr>
+</tbody></table>
+
+<h2 id="the-demographic-answer-object">The Demographic Answer object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12am"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">107594341</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The demographic answer&rsquo;s unique identifier</td></tr>
+<tr>
+<td>free_form_text</td><td>If the selected answer option is free-form, this is the value given by the user.  Otherwise <code class="prettyprint">null</code>.</td></tr>
+<tr>
+<td>application_id</td><td>The application for which the demographic question was answered</td></tr>
+<tr>
+<td>demographic_question_id</td><td>The demographic question which was answered.</td></tr>
+<tr>
+<td>demographic_answer_option_id</td><td>The demographic answer option which was selected.</td></tr>
+</tbody></table>
+
+<h2 id="get-list-demographic-questions">GET: List Demographic Questions</h2>
+
+<p>List all of an organization&rsquo;s demographic questions.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/questions'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What is your favorite color?"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pizza or pasta?"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/questions</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-question-object">See noteworthy response attributes.</a></p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-retrieve-demographic-question">GET: Retrieve Demographic Question</h2>
+
+<p>Retrieve a demographic question by its <code class="prettyprint">id</code>.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/questions/{id}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What is your favorite color?"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/questions/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the demographic question you want to retrieve.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-question-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-list-demographic-answer-options">GET: List Demographic Answer Options</h2>
+
+<p>List all of an organization&rsquo;s demographic answer options.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/answer_options'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/answer_options</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-option-object">See noteworthy response attributes.</a></p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-list-demographic-answer-options-for-demographic-question">GET: List Demographic Answer Options For Demographic Question</h2>
+
+<p>List all of the demographic answer options for a demographic question.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/questions/{id}/answer_options'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/questions/{id}/answer_options</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the demographic question for which you want to retrieve demographic answer options.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-option-object">See noteworthy response attributes.</a></p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-retrieve-demographic-answer-option">GET: Retrieve Demographic Answer Option</h2>
+
+<p>Retrieve a demographic answer option by its <code class="prettyprint">id</code>.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/answer_options/{id}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"free_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/answer_options/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the demographic answer option you want to retrieve.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-option-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-list-demographic-answers">GET: List Demographic Answers</h2>
+
+<p>List all of an organization&rsquo;s demographic answers.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/answers'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12am"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">787</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">783</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T15:09:46.806Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T15:09:46.806Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/answers</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-object">See noteworthy response attributes.</a></p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-list-demographic-answers-for-application">GET: List Demographic Answers For Application</h2>
+
+<p>List all of the demographic answers for an application.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/demographics/answers'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12am"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">787</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">787</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T15:09:46.806Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T15:09:46.806Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}/demographics/answers</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the application for which you want to retrieve demographic answers.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-object">See noteworthy response attributes.</a></p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-retrieve-demographic-answer">GET: Retrieve Demographic Answer</h2>
+
+<p>Retrieve a demographic answer by its <code class="prettyprint">id</code>.</p>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/demographics/answers/{id}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"free_form_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12am"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">787</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"demographic_answer_option_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-29T18:46:03.707Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/demographics/answers/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the demographic answer you want to retrieve.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-demographic-answer-object">See noteworthy response attributes.</a></p>
 
           <h1 id="departments">Departments</h1>
 
