@@ -7940,10 +7940,14 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">72200</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Face to Face"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">98765</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9123</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -7958,6 +7962,7 @@ X-RateLimit-Remaining: 49
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -7986,7 +7991,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td><td>The job stage&rsquo;s unique identifier</td></tr>
 <tr>
-<td>interviews</td><td>An array of interviews associated with this job stage.</td></tr>
+<td>name</td><td>The name for this job stage</td></tr>
+<tr>
+<td>job_id</td><td>The job that this stage belongs to</td></tr>
+<tr>
+<td>interviews</td><td>An array of interview steps associated with this job stage.<br>Each Step contains:<br><code class="prettyprint">id</code> - The step&rsquo;s unique identifier<br><code class="prettyprint">name</code> - The name of this interview step<br><code class="prettyprint">schedulable</code> - True / False value for whether this step can be scheduled<br><code class="prettyprint">interview_kit</code> - Details about the interview, including unique ID, interview prep content, and custom interview questions</td></tr>
 </tbody></table>
 
 <h2 id="get-list-job-stages">GET: List Job Stages</h2>
@@ -8008,6 +8017,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8031,6 +8041,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7345</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9125</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8099,6 +8110,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8113,9 +8125,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9129</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8151,6 +8161,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8004</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9130</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -8215,6 +8226,7 @@ X-RateLimit-Remaining: 49
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9127</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
