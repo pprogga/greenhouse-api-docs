@@ -268,6 +268,8 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>May 15, 2019 05:00:00PM</td><td>Added ability to change prospect pool and stage via <a href="#patch-update-application">PATCH: Update Application</a></td></tr>
 <tr>
+<td>May 15, 2019 03:15:00PM</td><td>Added <code class="prettyprint">opening</code> field to <a href="#offers">Offers</a>.</td></tr>
+<tr>
 <td>May 7, 2019 03:30:00PM</td><td>Added <a href="#demographic-data">Demographic Data endpoints</a></td></tr>
 <tr>
 <td>Apr 8 , 2019 04:00:00PM</td><td>Added <code class="prettyprint">interviewer</code> to <a href="#the-scorecard-object">Scorecard object</a></td></tr>
@@ -6689,30 +6691,30 @@ X-RateLimit-Remaining: 49
 <p>This endpoint is used to managing openings on jobs.</p>
 
 <h2 id="the-job-opening-object">The job opening object</h2>
-<pre class="highlight plaintext"><code>[
-    {
-        "id": 123,
-        "opening_id": "OPENED-1",
-        "status": "open",
-        "opened_at": "2015-11-19T19:53:32.565Z",
-        "closed_at": null,
-        "application_id": null,
-        "close_reason": null
-    },
-    {
-        "id": 123,
-        "opening_id": "CLOSED-1",
-        "status": "closed",
-        "opened_at": "2015-11-19T19:53:32.565Z",
-        "closed_at": "2015-12-14T19:53:32.565Z",
-        "application_id": 65565,
-        "close_reason": {
-          "id": 678,
-          "name": "Hired - Backfill"
-        }
-    }
-]
-</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPENED-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-14T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65565</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">678</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hired - Backfill"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 
 <h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
 
@@ -9862,6 +9864,15 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91081818</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84593</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7328851</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2586842</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T20:58:51.697Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:10.378Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:43.388Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-07"</span><span class="p">,</span><span class="w">
@@ -9943,6 +9954,8 @@ X-RateLimit-Remaining: 49
 <td>custom_fields</td><td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td></tr>
 <tr>
 <td>keyed_custom_fields</td><td>This contains the same information as custom_fields but formatted in a different way that includes more information.  This will tell you the type of custom field data to expect, the text name of custom field, and the value.  The key of this hash is the custom field&rsquo;s immutable field key, which will not change even if the name of the custom field is changed in Greenhouse.</td></tr>
+<tr>
+<td>opening</td><td>The <a href="#job-openings">Job Opening</a> associated with the offer. <code class="prettyprint">null</code> if none.</td></tr>
 </tbody></table>
 
 <h2 id="get-list-offers">GET: List Offers</h2>
@@ -9958,6 +9971,15 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91081818</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84593</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7328851</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2586842</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T20:58:51.697Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:10.378Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:43.388Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-07"</span><span class="p">,</span><span class="w">
@@ -10017,6 +10039,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91078894</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">837749</span><span class="p">,</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7327285</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening"</span><span class="p">:</span><span class="w">  </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:21:15.639Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:21:29.796Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -10127,6 +10150,15 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91078894</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">837749</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7327285</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2586842</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T20:58:51.697Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:10.378Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:43.388Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-07"</span><span class="p">,</span><span class="w">
@@ -10186,6 +10218,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91078894</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">837749</span><span class="p">,</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7327285</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:21:15.639Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:21:29.796Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -10289,6 +10322,15 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91078894</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">837749</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7327285</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2586842</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T20:58:51.697Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:21:29.911Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:24:30.707Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06"</span><span class="p">,</span><span class="w">
@@ -10373,6 +10415,15 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91081818</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84593</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7328851</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2586842</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T20:58:51.697Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:10.378Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-06T20:23:43.388Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-07"</span><span class="p">,</span><span class="w">
