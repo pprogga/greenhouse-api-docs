@@ -262,9 +262,13 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>May 15, 2019 5:00:00PM</td><td>Added ability to change prospect pool and stage via <a href="#patch-update-application">PATCH: Update Application</a></td></tr>
+<td>May 24, 2019 01:00:00PM</td><td>Added <code class="prettyprint">schedulable</code> field to <a href="#job-stages">Job Stages Endpoints</a></td></tr>
 <tr>
-<td>May 7, 2019 3:30:00 PM</td><td>Added <a href="#demographic-data">Demographic Data endpoints</a></td></tr>
+<td>May 24, 2019 01:00:00PM</td><td>Added <code class="prettyprint">first_published_at</code> field to <a href="#job-posts">Job Posts Endpoints</a></td></tr>
+<tr>
+<td>May 15, 2019 05:00:00PM</td><td>Added ability to change prospect pool and stage via <a href="#patch-update-application">PATCH: Update Application</a></td></tr>
+<tr>
+<td>May 7, 2019 03:30:00PM</td><td>Added <a href="#demographic-data">Demographic Data endpoints</a></td></tr>
 <tr>
 <td>Apr 8 , 2019 04:00:00PM</td><td>Added <code class="prettyprint">interviewer</code> to <a href="#the-scorecard-object">Scorecard object</a></td></tr>
 <tr>
@@ -7021,6 +7025,7 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -7154,6 +7159,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>active</td><td>If <code class="prettyprint">false</code>, this job post has been deleted.</td></tr>
 <tr>
+<td>live</td><td>If <code class="prettyprint">true</code>, this job post status is set to live.</td></tr>
+<tr>
+<td>first_published_at</td><td>Timestamp when this job post was first set to live.</td></tr>
+<tr>
 <td>internal</td><td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an internal job board.</td></tr>
 <tr>
 <td>external</td><td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an external job board.</td></tr>
@@ -7188,6 +7197,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -7362,6 +7372,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -7512,6 +7523,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -7635,6 +7647,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">129548</span><span class="p">,</span><span class="w">
     </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test job two"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Material Plane"</span><span class="w">
@@ -7720,6 +7733,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-03T17:06:18Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -7940,10 +7954,14 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">72200</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Face to Face"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">98765</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9123</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -7958,6 +7976,7 @@ X-RateLimit-Remaining: 49
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -7986,7 +8005,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td><td>The job stage&rsquo;s unique identifier</td></tr>
 <tr>
-<td>interviews</td><td>An array of interviews associated with this job stage.</td></tr>
+<td>name</td><td>The name for this job stage</td></tr>
+<tr>
+<td>job_id</td><td>The job that this stage belongs to</td></tr>
+<tr>
+<td>interviews</td><td>An array of interview steps associated with this job stage.<br>Each Step contains:<br><code class="prettyprint">id</code> - The step&rsquo;s unique identifier<br><code class="prettyprint">name</code> - The name of this interview step<br><code class="prettyprint">schedulable</code> - True / False value for whether this step can be scheduled<br><code class="prettyprint">interview_kit</code> - Details about the interview, including unique ID, interview prep content, and custom interview questions</td></tr>
 </tbody></table>
 
 <h2 id="get-list-job-stages">GET: List Job Stages</h2>
@@ -8008,6 +8031,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8031,6 +8055,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7345</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9125</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8099,6 +8124,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8113,9 +8139,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9129</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8151,6 +8175,7 @@ X-RateLimit-Remaining: 49
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8004</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9130</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -8215,6 +8240,7 @@ X-RateLimit-Remaining: 49
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9127</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
