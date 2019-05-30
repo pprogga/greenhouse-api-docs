@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>May 24, 2019 01:00:00PM</td><td>Added ability to set location on job posts via office and custom location id via <a href="#patch-update-job-post">PATCH: Update Job Post</a></td></tr>
+<tr>
 <td>May 24, 2019 01:00:00PM</td><td>Added <code class="prettyprint">schedulable</code> field to <a href="#job-stages">Job Stages Endpoints</a></td></tr>
 <tr>
 <td>May 24, 2019 01:00:00PM</td><td>Added <code class="prettyprint">first_published_at</code> field to <a href="#job-posts">Job Posts Endpoints</a></td></tr>
@@ -7889,6 +7891,58 @@ X-RateLimit-Remaining: 49
 <p><br>
 <a href="#the-job-post-object">See noteworthy response attributes.</a></p>
 
+<h2 id="get-retrieve-custom-locations-for-job-post">GET: Retrieve Custom Locations for Job Post</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/job_posts/{id}/custom_locations'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"greenhouse_job_board_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:19:53.617Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:19:53.617Z"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2321</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"greenhouse_job_board_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:53:35.586Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:53:35.586Z"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4215</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"greenhouse_job_board_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:19:53.617Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-15T15:19:53.617Z"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all the custom location options available for a given job post ID</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/job_posts/{id}/custom_locations</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the job post whose custom location options you want to retrieve</td></tr>
+</tbody></table>
+
 <h2 id="patch-update-job-post">PATCH: Update Job Post</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/job_posts/{id}'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -7942,6 +7996,10 @@ X-RateLimit-Remaining: 49
 <td>title</td><td>No</td><td>string</td><td>The new title for this job post.</td></tr>
 <tr>
 <td>location</td><td>No</td><td>string</td><td>The new location for this job post. This is just a plain text string.</td></tr>
+<tr>
+<td>location.office_id</td><td>No</td><td>integer</td><td>The new location for this job post. This will be set by an office ID. Only acceptable if the job board location configuration is limited to offices.</td></tr>
+<tr>
+<td>location.custom_location_id</td><td>No</td><td>integer</td><td>The new location for this job post. This will be set by a custom location ID. Only acceptable if the job board location configuration is limited to a custom list.</td></tr>
 <tr>
 <td>content</td><td>No</td><td>string</td><td>The new body of the job post. This will replace the entire existing job post body.</td></tr>
 </tbody></table>
