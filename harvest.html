@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Jun 7, 2019 02:00:00PM</td><td>Added default interviewers and estimated duration to the <a href="#the-job-stage-object">Job Stage object</a></td></tr>
+<tr>
 <td>May 24, 2019 01:00:00PM</td><td>Added ability to set location on job posts via office and custom location id via <a href="#patch-update-job-post">PATCH: Update Job Post</a></td></tr>
 <tr>
 <td>May 24, 2019 01:00:00PM</td><td>Added <code class="prettyprint">schedulable</code> field to <a href="#job-stages">Job Stages Endpoints</a></td></tr>
@@ -8022,6 +8024,16 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9123</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8037,6 +8049,16 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austen"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8092,6 +8114,16 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9124</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8116,6 +8148,16 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7345</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austen"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9125</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8185,6 +8227,16 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8200,6 +8252,19 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146219</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austen"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9129</span><span class="p">,</span><span class="w">
           </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;See if they can work with the boss.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
@@ -8301,6 +8366,16 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"schedulable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"estimated_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"default_interviewer_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">821</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertson"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Robertson"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100377"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9127</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
