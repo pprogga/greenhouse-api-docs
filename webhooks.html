@@ -180,8 +180,96 @@ analytics.page()
 <tr>
 <td><code class="prettyprint">custom_fields</code></td><td>Contains a hash map/associative array. The key of the hash map is an immutable key; which is an underscore-slugged version of the custom field&rsquo;s name at creation time. The exported properties reflect the active values of the custom field at the time of the export. All custom fields, public and private, will be exported. If a field exists but does not have a value, it will be exported with a value of null for singular values and empty arrays for multiple values. <em>Important Note</em>: If a custom field is created with the name <code class="prettyprint">Salary</code> the key will be <code class="prettyprint">salary</code>. If later the name of this custom field is changed to <code class="prettyprint">Wage</code> or <code class="prettyprint">Bonus</code>, the key will remain <code class="prettyprint">salary</code>.</td></tr>
 <tr>
-<td><code class="prettyprint">custom_fields[].type</code></td><td>One of: <code class="prettyprint">short_text</code>, <code class="prettyprint">long_text</code>, <code class="prettyprint">boolean</code>, <code class="prettyprint">single_select</code>, <code class="prettyprint">multi_select</code>, <code class="prettyprint">currency</code>, <code class="prettyprint">currency_range</code>, <code class="prettyprint">number</code>, <code class="prettyprint">number_range</code>, <code class="prettyprint">date</code>, or <code class="prettyprint">url</code>.</td></tr>
+<td><code class="prettyprint">custom_fields[].type</code></td><td>One of: <code class="prettyprint">short_text</code>, <code class="prettyprint">long_text</code>, <code class="prettyprint">boolean</code>, <code class="prettyprint">single_select</code>, <code class="prettyprint">multi_select</code>, <code class="prettyprint">currency</code>, <code class="prettyprint">currency_range</code>, <code class="prettyprint">number</code>, <code class="prettyprint">number_range</code>, <code class="prettyprint">date</code>, <code class="prettyprint">url</code>, or <code class="prettyprint">user</code>.</td></tr>
 </tbody></table>
+
+<h2 id="custom-fields">Custom Fields</h2>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"short_text_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Short Text Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A text string with fewer than 255 characters."</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"long_text_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long Text Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long_text"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A text string of any length."</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"boolean_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="err">(or</span><span class="w"> </span><span class="kc">false</span><span class="err">)</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"single_select"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single Select Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The text of selected custom field option."</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"multi_select"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multi Select Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multi_select"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"An array containing the text of"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"all the selected"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom field options"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"currency_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Currency Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currency"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80000</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"currency_range_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Currency Range Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"currency_range"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"min_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">80000</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"max_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"number_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Number Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"number_range_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Number Range Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number_range"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"min_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">80000</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"max_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"date_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YYYY-MM-DD"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"url_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URL Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.thisisjustatextvalue.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"user_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">94354</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ben Smith"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ben@example.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bs0615"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Custom fields may be attached to several objects within the Greenhouse Recruiting system. These fields may appear on candidates, applications, offers, and other objects in the system. These fields share several properties and are always indicated in web hooks by the &ldquo;custom_fields&rdquo; element. However, the &ldquo;value&rdquo; attribute of custom fields are different depending on the &ldquo;type&rdquo; attribute, so you must check the &ldquo;type&rdquo; attribute in order to predict what will be included in the value &ldquo;attribute&rdquo;. As described in the previous section, the type attribute will be one of short_text, long_text, boolean, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user. An example of each of these fields&rsquo; expected value format are provided. </p>
 
 <h2 id="disabled-web-hooks">Disabled web hooks</h2>
 
@@ -477,7 +565,8 @@ analytics.page()
               </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">117730</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job Admin"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asegal+jobadmin@greenhouse.io"</span><span class="w">
+                </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asegal+jobadmin@greenhouse.io"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-abc"</span><span class="w">
               </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">
