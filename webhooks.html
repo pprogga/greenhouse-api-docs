@@ -378,7 +378,7 @@ analytics.page()
         </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Current Company Co."</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-27T14:44:42Z"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/060/304/738/original/cats_schrodinger.png?AWSAccessKeyId=AKIAI2HNOZGNEUVWYNFQ&amp;Expires=1511732959&amp;Signature=YcaE3lmhvfwSzvgbl4sUrQzP12U%3D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
         </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://app.greenhouse.io/people/60304594"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"can_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -440,12 +440,12 @@ analytics.page()
         </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Cover Letter.docx"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/081/539/559/original/Test%20Cover%20Letter.docx?AWSAccessKeyId=AKIAI2HNOZGNEUVWYNFQ&amp;Expires=1511732684&amp;Signature=prY2TFZT6WbAqzOhvkJdVeNnfCo%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cover_letter"</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Resume.docx"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/081/539/558/original/Test%20Resume.docx?AWSAccessKeyId=AKIAI2HNOZGNEUVWYNFQ&amp;Expires=1511732684&amp;Signature=M24vittUtIXRgL6lDYOB0pRBv9Q%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -905,6 +905,7 @@ analytics.page()
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46194062</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234-56"</span><span class="w">
+        </span><span class="s2">"custom_fields"</span><span class="err">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158104</span><span class="p">,</span><span class="w">
@@ -1165,6 +1166,8 @@ analytics.page()
 <td><code class="prettyprint">application.job.close_date</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[].closed_at</code> instead.</td></tr>
 <tr>
 <td><code class="prettyprint">application.job.open_date</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[].opened_at</code> instead.</td></tr>
+<tr>
+<td><code class="prettyprint">application.opening.custom_fields</code></td><td>This element may be omitted if the organization does not have custom fields for openings enabled.</td></tr>
 </tbody></table>
 
 <h2 id="candidate-merged">Candidate merged</h2>
@@ -2302,6 +2305,18 @@ analytics.page()
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1235</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"approved"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
@@ -2336,6 +2351,8 @@ analytics.page()
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">hiring_team</code></td><td>Field contains the Greenhouse users responsible for this job.  Each field contains the user&rsquo;s Greenhouse user id and the user&rsquo;s external employee id from the customer&rsquo;s system.  The employee id will be null if it has not been set in Greenhouse.</td></tr>
+<tr>
+<td><code class="prettyprint">openings</code></td><td>Field contains all the openings in this job. The custom field element on each opening may be omitted if the organization does not have custom fields on openings enabled.</td></tr>
 </tbody></table>
 
 <h2 id="job-deleted">Job deleted</h2>
@@ -2413,6 +2430,18 @@ analytics.page()
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1235</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonus"</span><span class="p">,</span><span class="w">
@@ -2448,6 +2477,8 @@ analytics.page()
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">hiring_team</code></td><td>Field contains the Greenhouse users responsible for this job.  Each field contains the user&rsquo;s Greenhouse user id and the user&rsquo;s external employee id from the customer&rsquo;s system.  The employee id will be null if it has not been set in Greenhouse.</td></tr>
+<tr>
+<td><code class="prettyprint">openings</code></td><td>Field contains all the openings in this job. The custom field element on each opening may be omitted if the organization does not have custom fields on openings enabled.</td></tr>
 </tbody></table>
 
 <h2 id="job-approved">Job Approved</h2>
@@ -2502,6 +2533,18 @@ analytics.page()
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1235</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonus"</span><span class="p">,</span><span class="w">

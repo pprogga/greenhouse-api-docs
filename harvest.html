@@ -262,6 +262,10 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Jul 17, 2019 01:00:00PM</td><td>Added ability to update the current offer on an application via <a href="#patch-update-current-offer">PATCH: Update Current Offer</a></td></tr>
+<tr>
+<td>Jul 17, 2019 01:00:00PM</td><td>Added ability to post new attachments to applications via <a href="#post-add-attachment-to-application">POST: Add Attachment to Application</a></td></tr>
+<tr>
 <td>Jun 26, 2019 12:00:00PM</td><td>Added ability to create new Offices linked by external parent ids to <a href="#post-add-office">POST: Add Office</a>.</td></tr>
 <tr>
 <td>Jun 26, 2019 12:00:00PM</td><td>Added ability to create new Departments linked by external parent ids to <a href="#post-add-department">POST: Add Department</a>.</td></tr>
@@ -1387,6 +1391,73 @@ X-RateLimit-Remaining: 49
 
 <p><a href="#the-application-object">See noteworthy response attributes.</a></p>
 
+<h2 id="post-add-attachment-to-application">POST: Add Attachment to Application</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/attachments'</span>
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"filename"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Post an attachment to an application by the application <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/applications/{id}/attachments</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>filename</td><td>Yes</td><td>string</td><td>Name of the file</td></tr>
+<tr>
+<td>type</td><td>Yes</td><td>string</td><td>One of: [&ldquo;resume&rdquo;, &ldquo;cover_letter&rdquo;, &ldquo;other&rdquo;, &ldquo;take_home_test&rdquo;, &ldquo;offer_letter&rdquo;, &ldquo;signed_offer_letter&rdquo;]. For type <code class="prettyprint">take_home_test</code>, there must be an outstanding test on the application. For type <code class="prettyprint">offer_letter</code>, there must be an existing offer on the application, and this action will retrigger the approvals process. For type <code class="prettyprint">signed_offer_letter</code>, there must be an approved, sent offer letter.</td></tr>
+<tr>
+<td>content</td><td>No</td><td>string</td><td>Base64 encoded content of the attachment (if you are providing content, you do not need to provide url). String must be UTF-8 encoded.</td></tr>
+<tr>
+<td>url</td><td>No</td><td>string</td><td>Url of the attachment (if you are providing the url, you do not need to provide the content)</td></tr>
+<tr>
+<td>visibility</td><td>No</td><td>string</td><td>One of: [&ldquo;public&rdquo;, &ldquo;private&rdquo;, &ldquo;admin_only&rdquo;]. This only applies when attachment type is &ldquo;other&rdquo;, and will be ignored for all other attachment types. If not supplied, type &ldquo;other&rdquo; documents will default to <code class="prettyprint">admin_only</code>. Resumes, cover letters, and take home tests will always be <code class="prettyprint">public</code>. Offer letters and signed offer letters will always be <code class="prettyprint">private</code>.</td></tr>
+<tr>
+<td>content_type</td><td>No*</td><td>string</td><td>The content-type of the document you are sending. When using a URL, this generally isn&rsquo;t needed, as the responding server will deliver a content type.  This should be included for encoded content.  Accepted content types are: <ul><li>&ldquo;application/atom+xml&rdquo;</li><li>&ldquo;application/javascript&rdquo;</li><li>&ldquo;application/json&rdquo;</li><li>&ldquo;application/msgpack&rdquo;</li><li>&ldquo;application/msword&rdquo;</li><li>&ldquo;application/pdf&rdquo;</li><li>&ldquo;application/rss+xml&rdquo;</li><li>&ldquo;application/vnd.ms-excel&rdquo;</li><li>&ldquo;application/vnd.openxmlformats-<br>officedocument.spreadsheetml.sheet&rdquo;</li><li>&ldquo;application/vnd.openxmlformats-<br>officedocument.wordprocessingml.document&rdquo;</li><li>&ldquo;application/vnd.ms-powerpoint&rdquo;</li><li>&ldquo;application/xml&rdquo;</li><li>&ldquo;application/x-www-form-urlencoded&rdquo;</li><li>&ldquo;application/x-yaml&rdquo;</li><li>&ldquo;application/zip&rdquo;</li><li>&ldquo;multipart/form-data&rdquo;</li><li>&ldquo;image/bmp&rdquo;</li><li>&ldquo;image/gif&rdquo;</li><li>&ldquo;image/jpeg&rdquo;</li><li>&ldquo;image/png&rdquo;</li><li>&ldquo;image/tiff&rdquo;</li><li>&ldquo;text/calendar&rdquo;</li><li>&ldquo;text/css&rdquo;</li><li>&ldquo;text/csv&rdquo;</li><li>&ldquo;text/html&rdquo;</li><li>&ldquo;text/javascript&rdquo;</li><li>&ldquo;text/plain&rdquo;</li><li>&ldquo;text/vcard&rdquo;</li><li>&ldquo;video/mpeg&rdquo;</li></ul></td></tr>
+</tbody></table>
+
+<p>* - content_type is not required for purposes of backward compatibility. It is <em>strongly</em> recommended that you always include content type for document uploads.</p>
+
 <h2 id="post-hire-application">POST: Hire Application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/hire'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -2306,11 +2377,11 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/053/883/394/original/corgi.jpg?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=cg%2BhyNTvvNgTTzWtsMJJZvPRYH4%3D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/077/683/131/original/John_Locke_Offer_Packet_09_27_2017.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=R5TbJPzD7TO5NgX8K8Y0yogPstY%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_packet"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -2590,11 +2661,11 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/053/883/394/original/corgi.jpg?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=cg%2BhyNTvvNgTTzWtsMJJZvPRYH4%3D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/077/683/131/original/John_Locke_Offer_Packet_09_27_2017.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=R5TbJPzD7TO5NgX8K8Y0yogPstY%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_packet"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -2831,11 +2902,11 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/053/883/394/original/corgi.jpg?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=cg%2BhyNTvvNgTTzWtsMJJZvPRYH4%3D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/077/683/131/original/John_Locke_Offer_Packet_09_27_2017.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509193807&amp;Signature=R5TbJPzD7TO5NgX8K8Y0yogPstY%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_packet"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -3198,11 +3269,11 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:54:34.257Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:54:34.243Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/053/883/394/original/corgi.jpg?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509195274&amp;Signature=NHilozZgXPHOI9uvpKTnf3A50Gc%3D"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_28_2017.pdf"</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/077/815/020/original/John_Locke_Offer_Packet_09_28_2017.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509195274&amp;Signature=Vb7z8GlHJXvwqhvx%2BTrIZ32zaVo%3D"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
               </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_packet"</span><span class="w">
           </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
@@ -3414,6 +3485,8 @@ X-RateLimit-Remaining: 49
 </aside>
 
 <h2 id="post-add-attachment">POST: Add Attachment</h2>
+
+<aside class="warning">As of July 2019, we introduced the ability to add attachments to an individual application and to upload new types of attachments. Documentation can be found <a href="#post-add-attachment-to-application">here</a>.</aside>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/attachments'</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -4586,11 +4659,11 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T13:36:04.725Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T13:31:37.929Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/people/photos/053/883/394/original/corgi.jpg?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509197765&amp;Signature=pr0qNjZvTvLCV2td9hebhEa7P3Y%3D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_28_2017.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/077/815/020/original/John_Locke_Offer_Packet_09_28_2017.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509197765&amp;Signature=rV%2FW668FnnG4EFGLJbHrnY%2B7Mvs%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_packet"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -4757,12 +4830,12 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Justin Locke resume.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/048/999/636/original/Byron%20Sonnett%20resume.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509198103&amp;Signature=Zc%2BenNvJyxH4FatQBRFz8248GUM%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="w">
         </span><span class="p">},</span><span class="w">
          </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Justin Locke cover leter.pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/person_attachments/data/048/999/636/original/Byron%20Sonnett%20resume.pdf?AWSAccessKeyId=AKIAIK36UTOKQ5F2YNMQ&amp;Expires=1509198103&amp;Signature=Zc%2BenNvJyxH4FatQBRFz8248GUM%3D"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cover_letter"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -10777,6 +10850,61 @@ X-RateLimit-Remaining: 49
 
 <p><br>
 <a href="#the-offer-object">See noteworthy response attributes.</a></p>
+
+<h2 id="patch-update-current-offer">PATCH: Update Current Offer</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/offers/current_offer'</span>
+-H <span class="s2">"Content-Type: application/json"</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-15"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-27"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-29T12:56:05Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Update the current offer on the given application. The response will only tell you if the update succeeded.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/applications/{id}/offers/current_offer</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>start_date</td><td>No</td><td>The day the candidate will start. A date string, formatted like &ldquo;YYYY-MM-DD&rdquo;. For compatibility, this will also accept an ISO timestamp, but the time will be ignored.</td></tr>
+<tr>
+<td>sent_at</td><td>No</td><td>The date the offer is sent. A date string, formatted like &ldquo;YYYY-MM-DD&rdquo;. For compatibility, this will also accept an ISO timestamp, but the time will be ignored.</td></tr>
+<tr>
+<td>created_at</td><td>No</td><td>The date the offer was created. An ISO time-string formatted like &ldquo;YYYY-MM-DDTHH:MM:SSZ&rdquo;</td></tr>
+</tbody></table>
 
           <h1 id="offices">Offices</h1>
 
