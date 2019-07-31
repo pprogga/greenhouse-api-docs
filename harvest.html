@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Jul 31, 2019 01:00:00PM</td><td>Added ability to filter demographic data answers by created_at and updated_at dates <a href="#get-list-demographic-answers">GET: Demographic Answers</a></td></tr>
+<tr>
 <td>Jul 17, 2019 01:00:00PM</td><td>Added ability to update the current offer on an application via <a href="#patch-update-current-offer">PATCH: Update Current Offer</a></td></tr>
 <tr>
 <td>Jul 17, 2019 01:00:00PM</td><td>Added ability to post new attachments to applications via <a href="#post-add-attachment-to-application">POST: Add Attachment to Application</a></td></tr>
@@ -5873,6 +5875,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td class="optional">created_before</td><td>Return only answers created before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">created_after</td><td>Return only answers created at or after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">updated_before</td><td>Return only answers updated before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">updated_after</td><td>Return only answers updated at or after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -5934,6 +5944,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td class="optional">created_before</td><td>Return only answers created before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">created_after</td><td>Return only answers created at or after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">updated_before</td><td>Return only answers updated before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">updated_after</td><td>Return only answers updated at or after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
