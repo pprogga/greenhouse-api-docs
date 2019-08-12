@@ -4183,19 +4183,29 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>school_id</td><td>Yes</td><td>integer</td><td>The ID of the college attended; from the GET schools endpoint</td></tr>
+<td>school_id</td><td>No</td><td>integer</td><td>The ID of the college attended; from the GET schools endpoint</td></tr>
 <tr>
-<td>discipline_id</td><td>Yes</td><td>integer</td><td>The ID of the discipline of the candidate&rsquo;s education; from the GET disciplines endpoint.</td></tr>
+<td>discipline_id</td><td>No</td><td>integer</td><td>The ID of the discipline of the candidate&rsquo;s education; from the GET disciplines endpoint.</td></tr>
 <tr>
-<td>degree_id</td><td>Yes</td><td>integer</td><td>The type of degree received; from the GET degrees endpoint</td></tr>
+<td>degree_id</td><td>No</td><td>integer</td><td>The type of degree received; from the GET degrees endpoint</td></tr>
 <tr>
-<td>start_date</td><td>Yes</td><td>DateTime</td><td>The date the candidate began attendance. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.*</td></tr>
+<td>start_month</td><td>No</td><td>integer</td><td>The month the candidate began attendance. Must be between 1-12.</td></tr>
 <tr>
-<td>end_date</td><td>Yes</td><td>DateTime</td><td>The date the candidate finished attendance. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.*</td></tr>
+<td>start_year</td><td>No</td><td>integer</td><td>The year the candidate began attendance. Must be between 1900-2100.</td></tr>
+<tr>
+<td>start_date</td><td>No</td><td>DateTime</td><td>The date the candidate began attendance. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.*</td></tr>
+<tr>
+<td>end_month</td><td>No</td><td>integer</td><td>The month the candidate finished attendance. Must be between 1-12.</td></tr>
+<tr>
+<td>end_year</td><td>No</td><td>integer</td><td>The year the candidate finished attendance. Must be between 1900-2100.</td></tr>
+<tr>
+<td>end_date</td><td>No</td><td>DateTime</td><td>The date the candidate finished attendance. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.*</td></tr>
 </tbody></table>
 
 <ul>
 <li>- Note that start_date and end_date accept an <a href="#general-considerations">ISO-8601</a> timestamp in accordance with Harvest&rsquo;s standard timestamp rules, but only Month and Year will be displayed on the candidate profile in Greenhouse. The &ldquo;latest education&rdquo; will be updated automatically. Day and time information in these timestamps will be recorded but not referenced in Greenhouse.</li>
+<li>- Note that you can either have start_date, or start_month and start_year.</li>
+<li>- Note that you can either have end_date, or end_month and end_year.</li>
 </ul>
 
 <h2 id="delete-remove-education-from-candidate">DELETE: Remove Education From Candidate</h2>
