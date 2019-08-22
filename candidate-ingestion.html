@@ -135,7 +135,7 @@ Your Consumer Secret is confidential, and is best kept private. Greenhouse will 
 
 <p><img src="/images/prompt.png" alt= "Prompt Image" max-width></p>
 
-<p>Once the OAuth process is complete and the user grants the partner permission to access their data on Greenhouse, the partner will receive an access token.  This access token must be included in the Authorization header:</p>
+<p>Once the OAuth process is complete and the user grants the partner permission to access their data on Greenhouse, the partner will receive an access token. This access token must be included in the Authorization header:</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;access_token&gt;</code></p>
 
@@ -168,6 +168,28 @@ Your Consumer Secret is confidential, and is best kept private. Greenhouse will 
 <aside class="warning">
 These scopes do not apply if you are authenticating via Basic Auth.
 </aside>
+
+<h2 id="general-considerations">General considerations</h2>
+
+<p>Unless otherwise specified, API methods generally conform to the following:</p>
+
+<ul>
+<li>Properties without a value will use <code class="prettyprint">null</code> instead of being undefined</li>
+<li>&ldquo;Snake Case&rdquo; is used for attribute names (e.g. <code class="prettyprint">first_name</code>)</li>
+<li>We reserve the right to add more properties to objects, but will never change or remove them</li>
+</ul>
+
+<h2 id="ingestion-api-change-log">Ingestion API Change Log</h2>
+
+<p>The timestamps below are Eastern Time.</p>
+
+<table><thead>
+<tr>
+<td>Date</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>Aug 22, 2019 11:00:00AM</td><td>Added Change Log and General Consideration sections to the Ingestion API documentation</td></tr>
+</tbody></table>
 
           <h1 id="candidates">Candidates</h1>
 
