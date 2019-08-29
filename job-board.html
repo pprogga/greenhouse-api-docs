@@ -989,6 +989,115 @@ can be used to dynamically construct your own job application form.</p>
 <td>tree</td><td>The children departments are returned as a tree.</td></tr>
 </tbody></table>
 
+          <h1 id="sections">Sections</h1>
+
+<h2 id="list-sections">List sections</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"sections"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">14128</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Don't see a job you like?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Engineer"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Manager"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">85764</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"General Application"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">888888</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Prospect"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=888888"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of your organization&rsquo;s sections and jobs.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/sections</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+</tbody></table>
+
+<h2 id="retrieve-a-section">Retrieve a section</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">14128</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Don't see a job you like?"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Engineer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Manager"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of jobs for a given <code class="prettyprint">section_id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/sections/{section_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>section_id</td><td>ID of the section to retrieve</td></tr>
+</tbody></table>
+
           <h1 id="educations">Educations</h1>
 
 <p>This is a list of endpoints which can be used to populate Education data for candidate applications. Instructions for posting applications that include Education information can be found under <a href="#submit-an-application">Applications</a>.</p>
