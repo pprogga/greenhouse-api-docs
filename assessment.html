@@ -281,16 +281,19 @@ The partner_interview_id should not be confused with partner_test_id. While part
 
 <p>When a candidate completes a test, send this request to the URL sent in the initial Send Test request to signal Greenhouse that the test has been completed. Upon this, Greenhouse will send a request to your Test Status endpoint to read the new status of the test.</p>
 
+<p><code class="prettyprint">PATCH https://app.greenhouse.io/integrations/testing_partners/take_home_tests/12345</code></p>
+
 <h3 id="request">Request</h3>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://app.greenhouse.io/integrations/testing_partners/take_home_tests/12345'</span>
+
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
+<p>No parameters are necessary with this request.</p>
+
 <h3 id="response">Response</h3>
 
-<blockquote>
-<p>HTTP status code only.</p>
-</blockquote>
+<p>The response will return only the HTTP status code.</p>
 
           <h1 id="sending-updates-to-greenhouse">Sending Updates to Greenhouse</h1>
 
