@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Sep 18, 2019 01:00:00PM</td><td>Added ability to create prospect applications for existing candidates/prospects <a href="#post-add-application-to-candidate-prospect">POST: Add Application to Candidate/Prospect</a></td></tr>
+<tr>
 <td>Jul 31, 2019 01:00:00PM</td><td>Added ability to filter demographic data answers by created_at and updated_at dates <a href="#get-list-demographic-answers">GET: Demographic Answers</a></td></tr>
 <tr>
 <td>Jul 17, 2019 01:00:00PM</td><td>Added ability to update the current offer on an application via <a href="#patch-update-current-offer">PATCH: Update Current Offer</a></td></tr>
@@ -3867,7 +3869,7 @@ X-RateLimit-Remaining: 49
 
 <p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
 
-<h2 id="post-add-candidate-application">POST: Add Candidate Application</h2>
+<h2 id="post-add-application-to-candidate-prospect">POST: Add Application to Candidate/Prospect</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/applications'</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -3875,7 +3877,29 @@ X-RateLimit-Remaining: 49
 </code></pre>
 
 <blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
+<p>To create a prospect application for jobs 123 and 456:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="mi">456</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"prospective_office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">58319</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospective_department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9021</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect_pool_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1640</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect_pool_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7594</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect_owner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">107468</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>To create a prospect application on no jobs:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>To create a candidate application:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266926</span><span class="p">,</span><span class="w">
@@ -3942,7 +3966,9 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Create a new application for this candidate or prospect. If a prospect, this will add a new candidate application to the given job on their profile, this will not convert their existing prospect application into a candidate application.</p>
+<p>Create a new application for an existing candidate or prospect.</p>
+
+<p>The new application can be a candidate application or a prospect application, depending on the <code class="prettyprint">&quot;prospect&quot;</code> parameter which defaults to <code class="prettyprint">&quot;false&quot;</code>.  The JSON body parameters differ depending on whether you are creating a prospect application or a candidate application.  The main difference is that prospect applications can be considered for zero, one, or multiple jobs.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3958,7 +3984,7 @@ X-RateLimit-Remaining: 49
 <td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
 </tbody></table>
 
-<h3 id="json-body-parameters">JSON Body Parameters</h3>
+<h3 id="json-body-parameters-for-candidate-application">JSON Body Parameters for Candidate application</h3>
 
 <table><thead>
 <tr>
@@ -3978,6 +4004,36 @@ X-RateLimit-Remaining: 49
 <td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
 <tr>
 <td>attachments</td><td>No</td><td>array</td><td>An array of attachments to be uploaded to this application. See <a href="#post-add-attachment">Add Attachment</a> for parameters.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters-for-prospect-application">JSON Body Parameters for Prospect application</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>prospect</td><td>Yes</td><td>boolean</td><td>Set to <code class="prettyprint">&quot;true&quot;</code> in order to create a prospect application.</td></tr>
+<tr>
+<td>job_ids</td><td>No</td><td>array</td><td>An optional array of Job IDs to consider this prospect for.</td></tr>
+<tr>
+<td>source_id</td><td>No</td><td>integer</td><td>The id of the source to be credited for this application</td></tr>
+<tr>
+<td>referrer</td><td>No</td><td>object</td><td>An object representing the referrer</td></tr>
+<tr>
+<td>referrer[type]</td><td>No</td><td>string</td><td>A string representing the type of referrer: &#39;id&rsquo;, &#39;email&rsquo;, or &#39;outside&rsquo;</td></tr>
+<tr>
+<td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
+<tr>
+<td>prospect_pool_id</td><td>No</td><td>integer</td><td>Prospect Pool ID.</td></tr>
+<tr>
+<td>prospect_pool_stage_id</td><td>No</td><td>integer</td><td>Prospect Pool Stage ID.  <code class="prettyprint">prospect_pool_id</code> is required, and the prospect pool stage must belong to the given prospect pool.</td></tr>
+<tr>
+<td>prospect_owner_id</td><td>No</td><td>integer</td><td>User ID of the prospect owner.</td></tr>
+<tr>
+<td>prospective_department_id</td><td>No</td><td>integer</td><td>Department ID to consider this prospect for.</td></tr>
+<tr>
+<td>prospective_office_id</td><td>No</td><td>integer</td><td>Office ID to consider this prospect for.  <code class="prettyprint">prospective_department_id</code> is required in order to set a prospective office.</td></tr>
 </tbody></table>
 
 <h2 id="post-add-note">POST: Add Note</h2>
