@@ -279,7 +279,7 @@ The partner_interview_id should not be confused with partner_test_id. While part
 
           <h1 id="patch-mark-test-as-completed">PATCH - Mark Test as Completed</h1>
 
-<p>When a candidate completes a test, send this request to the URL sent in the initial Send Test request to signal Greenhouse that the test has been completed. Upon this, Greenhouse will send a request to your Test Status endpoint to read the new status of the test.</p>
+<p>When a candidate completes a test, send this request to the URL sent in the initial Send Test request to signal Greenhouse that the test has been completed. Upon this, Greenhouse will send a request to your Test Status endpoint.</p>
 
 <p><code class="prettyprint">PATCH https://app.greenhouse.io/integrations/testing_partners/take_home_tests/12345</code></p>
 
@@ -298,6 +298,8 @@ The partner_interview_id should not be confused with partner_test_id. While part
           <h1 id="sending-updates-to-greenhouse">Sending Updates to Greenhouse</h1>
 
 <h3 id="if-you-have-implemented-the-polling-option">If you have implemented the polling option:</h3>
+
+<aside class="warning">The polling option has been deprecated as of October 1, 2019. All Assessment API implementations after this date must use the PATCH Completed Test endpoint.</aside>
 
 <p>After a successful <code class="prettyprint">send_test</code> request, Greenhouse will check whether the test instance has been completed by polling the <code class="prettyprint">test_status</code> endpoint hourly. We will discontinue polling the <code class="prettyprint">test_status</code> endpoint after we receive a <code class="prettyprint">partner_status</code> of <code class="prettyprint">complete</code>, or after 8 weeks has passed since the test was sent.</p>
 
