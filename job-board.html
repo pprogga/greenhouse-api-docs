@@ -203,6 +203,8 @@ Job Board data is publicly available, so authentication is not required for any 
 When submitting a job application, you will use the <code>id</code> field to specify the application&rsquo;s target job post.
 </aside>
 
+<p>Prospect posts include a null value for <code class="prettyprint">internal_job_id</code></p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs</code></p>
@@ -989,7 +991,7 @@ can be used to dynamically construct your own job application form.</p>
 <td>tree</td><td>The children departments are returned as a tree.</td></tr>
 </tbody></table>
 
-          <h1 id="sections">Sections</h1>
+          <h1 id="prospect-post-sections">Prospect Post Sections</h1>
 
 <h2 id="list-sections">List sections</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1037,7 +1039,7 @@ can be used to dynamically construct your own job application form.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a list of your organization&rsquo;s sections and jobs.</p>
+<p>Returns a list of your organization’s sections and prospect posts. Prospect posts can be listed under a specific department or section. To view all prospect posts, list jobs and filter results by null <code class="prettyprint">internal_job_id</code></p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1080,7 +1082,7 @@ can be used to dynamically construct your own job application form.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a list of jobs for a given <code class="prettyprint">section_id</code>.</p>
+<p>Returns a list of prospect posts for a given <code class="prettyprint">section_id</code></p>
 
 <h3 id="http-request">HTTP Request</h3>
 
