@@ -2586,7 +2586,11 @@ analytics.page()
 
 <h2 id="job-post-created">Job Post created</h2>
 
-<p>This web hook fires when a job post is created. This occurs when a new job post is added from the job set up.</p>
+<p>This web hook fires when a job post or prospect post is created. This occurs when a new job post or prospect post is added from the job set up.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is</strong> present in the payload, the payload represents a new <strong>job post</strong>.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is not</strong> present, the payload represents a new <strong>prospect post</strong>.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_post_created"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2629,7 +2633,11 @@ analytics.page()
 
 <h2 id="job-post-updated">Job Post updated</h2>
 
-<p>This web hook fires when a job post is updated via the &ldquo;Edit Job Post&rdquo; page. It also fires when the live status of the job changes from on to off or vice-versa.</p>
+<p>This web hook fires when a job post or prospect post is updated via the &ldquo;Edit Job Post&rdquo; page. It also fires when the live status of the job changes from on to off or vice-versa.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is</strong> present in the payload, the payload represents an updated <strong>job post</strong>.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is not</strong> present, the payload represents an updated <strong>prospect post</strong>.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_post_updated"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2672,7 +2680,11 @@ analytics.page()
 
 <h2 id="job-post-deleted">Job Post deleted</h2>
 
-<p>This web hook fires when a job post is deleted.  This occurs when the delete link is clicked on a job post. Only job posts that are not live may be deleted. This will not fire if a job itself is deleted; a job being deleted implies all of its posts have been deleted with them.</p>
+<p>This web hook fires when a job post or prospect post is deleted.  This occurs when the delete link is clicked on a post. Only posts that are not live may be deleted. This will not fire if a job itself is deleted; a job being deleted implies all of its posts have been deleted with them.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is</strong> present in the payload, the payload represents a deleted <strong>job post</strong>.</p>
+
+<p>If <code class="prettyprint">job_id</code> <strong>is not</strong> present, the payload represents a deleted <strong>prospect post</strong>.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_post_deleted"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
