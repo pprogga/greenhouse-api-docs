@@ -262,6 +262,10 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Nov 26, 2019 11:00:00 AM</td><td>Updated the error response text to be more descriptive when attempting to delete a required custom field</td></tr>
+<tr>
+<td>Nov 26, 2019 11:00:00 AM</td><td>Added ability to update custom fields on an application&rsquo;s current offer via <a href="#patch-update-current-offer">PATCH: Update Current Offer</a></td></tr>
+<tr>
 <td>Nov 12, 2019 10:00:00 AM</td><td>Added a v2 version of <a href="#patch-edit-user-v2">PATCH: Edit User</a>, <a href="#patch-disable-user-v2">PATCH: Disable User</a>, and <a href="#patch-enable-user-v2">PATCH: Enable User</a></td></tr>
 <tr>
 <td>Oct 7, 2019 03:00:00 PM</td><td>Added custom fields to openings on organizations with this option enabled. <a href="#get-list-job-openings">GET: Openings</a></td></tr>
@@ -11192,7 +11196,21 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-15"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-27"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-29T12:56:05Z"</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-29T12:56:05Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some new value"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select_field_name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5678</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"delete_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -11232,6 +11250,28 @@ X-RateLimit-Remaining: 49
 <td>sent_at</td><td>No</td><td>The date the offer is sent. A date string, formatted like &ldquo;YYYY-MM-DD&rdquo;. For compatibility, this will also accept an ISO timestamp, but the time will be ignored.</td></tr>
 <tr>
 <td>created_at</td><td>No</td><td>The date the offer was created. An ISO time-string formatted like &ldquo;YYYY-MM-DDTHH:MM:SSZ&rdquo;</td></tr>
+<tr>
+<td>custom_fields[]</td><td>No</td><td>Array of hashes containing new custom field values. Passing an empty array does nothing.</td></tr>
+</tbody></table>
+
+<h3 id="custom-field-parameters">Custom Field Parameters</h3>
+
+<p>The custom field parameter structure is different in the PATCH method then in GET methods and responses. Certain types of custom fields require different elements to be included, while deleting a field requires a specific argument. What follows is the description of each item in a custom field element and what is required depending on the type.</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required for</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>all</td><td>The custom field id for this particular custom field.  One of this or name_key is required.</td></tr>
+<tr>
+<td>name_key</td><td>all</td><td>The field key for this custom field. This can be found in Greenhouse while editing custom options as &ldquo;Immutable Field Key&rdquo;  This or id is required for all custom field elements.</td></tr>
+<tr>
+<td>value</td><td>all</td><td>The value field contains the new custom field value.  In most cases this will be a string or a number.  In the case of single-select or multi-select custom fields, this will be a custom field option id or an array of custom field option ids, respectively. In the case of single-select fields, this can also be a string that matches an existing option value name exactly.</td></tr>
+<tr>
+<td>unit</td><td>currency</td><td>This contains the currency unit for a currency custom field. It is only required when updating a currency custom field.  This should accept any 3-character currency code from the ISO-4217 standard.</td></tr>
+<tr>
+<td>delete_value</td><td>n/a</td><td>When this element is included with a value of &ldquo;true&rdquo; (note, string true, not boolean true) the custom field value will be removed from Greenhouse.  Note that updating a custom field value to nil or a blank string will not work, as validations require these to be non-blank values.</td></tr>
 </tbody></table>
 
           <h1 id="offices">Offices</h1>
