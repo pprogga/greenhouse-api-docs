@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Dec 20, 2019 04:00:00PM</td><td>Added ability to assign custom field values in a <a href="#post-create-new-openings">POST: Job Openings</a> request</td></tr>
+<tr>
 <td>Nov 26, 2019 11:00:00 AM</td><td>Updated the error response text to be more descriptive when attempting to delete a required custom field</td></tr>
 <tr>
 <td>Nov 26, 2019 11:00:00 AM</td><td>Added ability to update custom fields on an application&rsquo;s current offer via <a href="#patch-update-current-offer">PATCH: Update Current Offer</a></td></tr>
@@ -7349,7 +7351,10 @@ X-RateLimit-Remaining: 49
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some value"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -7386,12 +7391,36 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>openings</td><td>yes</td><td>Array</td><td>This an array of opening IDs, which contain one element.</td></tr>
+<td>openings</td><td>yes</td><td>Array</td><td>This an array of hashes, which can contain an opening ID and custom fields.</td></tr>
 <tr>
 <td>openings.opening_id</td><td>yes</td><td>Array</td><td>This is a string that contains an opening_id. One new opening will be created for each hash element in the array. Opening ID is not required to have a string value and may be null.  Greenhouse has an internal limit of 100 open openings. If you attempt to create more than 100 openings in a single request, or if this request would create more than 100 open openings, the request will fail.</td></tr>
+<tr>
+<td>openings.custom_fields[]</td><td>No</td><td>Array</td><td>Array of custom field objects containing new custom field values. Passing an empty array does nothing. If you have any required custom fields configured for openings, they must be supplied for each new opening, or the request will fail. See the &ldquo;Custom Field Object Parameters&rdquo; section below for more details.</td></tr>
 </tbody></table>
 
 <p><strong>Note</strong>: Adding new openings may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</p>
+
+<h3 id="custom-field-object-parameters">Custom Field Object Parameters</h3>
+
+<p>The custom field parameter structure is different in the POST method than in GET methods and responses. Certain types of custom fields require different elements to be included. See below for the description of each item in a custom field element and what is required depending on the type.</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required for</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>all</td><td>The custom field ID for this particular custom field.  One of this or <code class="prettyprint">name_key</code> is required.</td></tr>
+<tr>
+<td>name_key</td><td>all</td><td>The name key for this custom field. This can be found in Greenhouse while editing custom options as <code class="prettyprint">Immutable Field Key</code>. One of this or <code class="prettyprint">id</code> is required.</td></tr>
+<tr>
+<td>value</td><td>all</td><td>The new custom field value.  In most cases this will be a string or a number.  In the case of single-select or multi-select custom fields, this will be a custom field option ID or an array of custom field option IDs, respectively. In the case of single-select fields, this can also be a string that matches an existing option&rsquo;s name exactly. See the <a href="#the-custom-field-object">Custom Field Object for more details</a>.</td></tr>
+<tr>
+<td>min_value</td><td>number_range, currency range</td><td>The minimum value for a range. Must be less than max_value.</td></tr>
+<tr>
+<td>max_value</td><td>number_range, currency_range</td><td>The maximum value for a range. Must be greater than min_value</td></tr>
+<tr>
+<td>unit</td><td>currency</td><td>This contains the currency unit for a currency custom field. It is only required when updating a currency custom field.  This should accept any 3-character currency code from the ISO-4217 standard.</td></tr>
+</tbody></table>
 
 <blockquote>
 <p>The above returns a JSON response, structured like this:</p>
