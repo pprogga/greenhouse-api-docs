@@ -2627,6 +2627,9 @@ X-RateLimit-Remaining: 49
             </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T00:00:00.000Z"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"linked_user_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">989604</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"desired_salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"work_remotely"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2688,6 +2691,8 @@ X-RateLimit-Remaining: 49
 <td>custom_fields</td><td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td></tr>
 <tr>
 <td>keyed_custom_fields</td><td>This contains the same information as custom_fields but formatted in a different way that includes more information.  This will tell you the type of custom field data to expect, the text name of custom field, and the value.  The key of this hash is the custom field&rsquo;s immutable field key, which will not change even if the name of the custom field is changed in Greenhouse.</td></tr>
+<tr>
+<td>linked_user_ids</td><td>If the candidate is an internal applicant, this returns the Greenhouse user ID of the candidate.</td></tr>
 </tbody></table>
 
 <h2 id="get-list-candidates">GET: List Candidates</h2>
@@ -2869,6 +2874,9 @@ X-RateLimit-Remaining: 49
             </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-08-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T00:00:00.000Z"</span><span class="w">
         </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"linked_user_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">989604</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"desired_salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000"</span><span class="p">,</span><span class="w">
@@ -3151,6 +3159,9 @@ X-RateLimit-Remaining: 49
             </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-08-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-15T00:00:00.000Z"</span><span class="w">
         </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"linked_user_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">989604</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"desired_salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000"</span><span class="p">,</span><span class="w">
