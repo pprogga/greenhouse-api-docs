@@ -14447,16 +14447,16 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"message: "</span><span class="err">User</span><span class="w"> </span><span class="err">updated</span><span class="nt">",
-    "</span><span class="err">user</span><span class="nt">": {"</span><span class="err">id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User updated"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>Edit a user&rsquo;s basic information. The V2 endpoint allows you to look up the user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/</code></p>
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/</code></p>
 
 <h2 id="patch-enable-user-v1">PATCH: Enable User (v1)</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
