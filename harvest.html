@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Apr 5, 2020 09:00:00AM</td><td>Added V2 of <a href="#post-scheduled-interviews">POST: Scheduled Interviews</a> and <a href="#patch-scheduled-interviews">PATCH: Scheduled Interviews</a>. Deprecated V1.</td></tr>
+<tr>
 <td>Jan 30, 2020 05:30:00PM</td><td>Added ability to update custom field values in a <a href="#patch-edit-openings">PATCH: Job Openings</a> request</td></tr>
 <tr>
 <td>Jan 30, 2020 05:30:00PM</td><td>Added ability to re-open a closed job opening in a <a href="#patch-edit-openings">PATCH: Job Openings</a> request</td></tr>
@@ -12647,7 +12649,7 @@ X-RateLimit-Remaining: 49
 <td>id</td><td>The ID of the scheduled interview to retrieve</td></tr>
 </tbody></table>
 
-<h2 id="post-create-scheduled-interview">Post: Create Scheduled Interview</h2>
+<h2 id="post-create-scheduled-interview">POST: Create Scheduled Interview</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews'</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -12726,7 +12728,11 @@ X-RateLimit-Remaining: 49
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/scheduled_interviews</code></p>
+<p>[DEPRECATED] ~~<code class="prettyprint">POST https://harvest.greenhouse.io/v1/scheduled_interviews</code>~~</p>
+
+<p>POST <code class="prettyprint">https://harvest.greenhouse.io/v2/scheduled_interviews</code></p>
+
+<p>Greenhouse deprecated the V1 endpoint on April 5th, 2020. The V2 endpoint was released so the validations performed by Harvest matched the validations performed when creating an interview in the Greenhouse application. Specifically, Greenhouse allows the addition of users with e-mail addresses that do not match any users in the organization and users who do not otherwise have permission to see the job, both of which Harvest prevented. Changing the validations in this way was considered a breaking change and a second version of the endpoint was released. The V1 endpoint should not be used as it is no longer supported and will be removed in a future release.</p>
 
 <h3 id="headers">Headers</h3>
 
@@ -12749,7 +12755,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>interview_id</td><td>Yes</td><td>integer</td><td>The id of the interview we&rsquo;d like to schedule. This id can be found in the <a href="#the-job-stage-object">job stage object</a>. It refers to an interview type (e.g. &ldquo;Executive Interview&rdquo; or &ldquo;On-site Interview&rdquo;) that is associated with a hiring plan&rsquo;s interview step.  This differs from a &ldquo;Scheduled Interview&rdquo; which refers to an instantiated interview that is associated with an application, interviewers, start time, etc.</td></tr>
 <tr>
-<td>interviewers[]</td><td>Yes</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted). Each user must be a valid interviewer for the hiring plan.</td></tr>
+<td>interviewers[]</td><td>Yes</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted).</td></tr>
 <tr>
 <td>start</td><td>Yes</td><td>string</td><td>A datetime specifying when the interview starts. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
 <tr>
@@ -12764,7 +12770,7 @@ X-RateLimit-Remaining: 49
     There may be a delay between when Greenhouse receives the POST: Create Scheduled Interview request and when Greenhouse creates the full Scheduled Interview record, which will result in a truncated API response. The truncated response body will contain the id of the newly Scheduled Interview. You can retrieve the full Scheduled Interview record by requesting the Scheduled Interview ID with the GET: Scheduled Interview endpoint. If you receive a 404 error from the GET: Scheduled Interview endpoint, this indicates that the full Scheduled Interview record is still not available. Until the Scheduled Interview record has been made fully-available in the API, please continue to request the record until the API returns a successful response. Our recommendation is to perform this check every 30 seconds until the data becomes available.
 </aside>
 
-<h2 id="patch-update-scheduled-interview">Patch: Update Scheduled Interview</h2>
+<h2 id="patch-update-scheduled-interview">PATCH: Update Scheduled Interview</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews/{id}'</span>
 -H <span class="s2">"Content-Type: application/json"</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -12842,7 +12848,11 @@ only update Scheduled Interviews in the following statues: Scheduled, Awaiting F
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code></p>
+<p>DEPRECATED ~~<code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code>~~</p>
+
+<p><code class="prettyprint">PATCH:</code>PATCH https://harvest.greenhouse.io/v2/scheduled_interviews/{id}`</p>
+
+<p>Greenhouse deprecated the V1 endpoint on April 5th, 2020. The V2 endpoint was released so the validations performed by Harvest matched the validations performed when updating an interview in the Greenhouse application. Specifically, Greenhouse allows the addition of users with e-mail addresses that do not match any users in the organization and users who do not otherwise have permission to see the job, both of which Harvest prevented. Changing the validations in this way was considered a breaking change and a second version of the endpoint was released. The V1 endpoint should not be used as it is no longer supported and will be removed in a future release.</p>
 
 <h3 id="headers">Headers</h3>
 
@@ -12851,7 +12861,7 @@ only update Scheduled Interviews in the following statues: Scheduled, Awaiting F
 <td>Header</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Will become the interview organizer. The user must have permission to manage the associcated application.</td></tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Will become the interview organizer. The user must have permission to manage the associated application.</td></tr>
 </tbody></table>
 
 <h3 id="json-body-parameters">JSON Body Parameters</h3>
@@ -12861,7 +12871,7 @@ only update Scheduled Interviews in the following statues: Scheduled, Awaiting F
 <td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>interviewers[]</td><td>No</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted). Each user must be a valid interviewer for the hiring plan.</td></tr>
+<td>interviewers[]</td><td>No</td><td>interviewer</td><td>Array of interviewers. Each must specify a user by user_id, email, or employee_id. Each must include a response status (one of needs_action, declined, tentative, or accepted).</td></tr>
 <tr>
 <td>start</td><td>No</td><td>string</td><td>A datetime specifying when the interview starts. Must be provided in <a href="#general-considerations">ISO-8601</a> format (e.g. 2018-11-05T13:12:14Z).</td></tr>
 <tr>
