@@ -262,6 +262,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>Apr 13, 2020 09:00:00AM</td><td>The V1 endpoints for [PATCH: Edit User], [PATCH: Disable User], and [PATCH: Enable User] have been deprecated. Users should move to the V2 endpoints as soon as convenient. This change was made to take advantage of additional ways to look up users in Greenhouse.</td></tr>
+<tr>
 <td>Apr 12, 2020 09:00:00AM</td><td>V1 of [PATCH: Update Job Post] has been deprecated. Updating a job post&rsquo;s status has been extracted to [PATCH: Update Job Post Status], while updating all other properties remains on [PATCH: Update Job Post]. The new endpoint more accurately reflects the permissions required by the On-Behalf-Of user to access and edit the Job Post&rsquo;s properties.</td></tr>
 <tr>
 <td>Apr 5, 2020 09:00:00AM</td><td>Added V2 of <a href="#post-scheduled-interviews">POST: Scheduled Interviews</a> and <a href="#patch-scheduled-interviews">PATCH: Scheduled Interviews</a>. Deprecated V1.</td></tr>
@@ -14326,38 +14328,43 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 <p><br>
 <a href="#the-user-object">See noteworthy response attributes.</a></p>
 
-<h2 id="patch-disable-user-v1">PATCH: Disable User (v1)</h2>
-<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/disable'</span>
+<h2 id="patch-edit-user">PATCH: Edit User</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v2/users/'</span>
+-H <span class="s2">"Content-Type: application/json"</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command takes a JSON request, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"primary_email_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@email.org"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"bob@email.org"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"linked_candidate_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="mi">654</span><span class="p">]</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Disable a user. It is safe to call this method on a user that is currently disabled. If the user is already disabled, nothing happens.</p>
+<blockquote>
+<p>The user element must contain one of &lsquo;employee_id&rsquo;, &#39;email&rsquo;, or &#39;user_id&rsquo;, but not more than one.</p>
+
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Edit a user&rsquo;s basic information. You may look up a user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/disable</code></p>
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/</code></p>
 
 <h3 id="headers">Headers</h3>
 
@@ -14369,7 +14376,27 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 <td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
 </tbody></table>
 
-<h2 id="patch-disable-user-v2">PATCH: Disable User (v2)</h2>
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first_name</td><td>No</td><td>string</td><td>The user&rsquo;s new first name. If included, this cannot be blank.</td></tr>
+<tr>
+<td>last_name</td><td>No</td><td>string</td><td>The user&rsquo;s new last name. If included, this cannot be blank.</td></tr>
+<tr>
+<td>employee_id*</td><td>No</td><td>string</td><td>The user&rsquo;s external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.</td></tr>
+</tbody></table>
+
+<p>* - If the employee_id feature is not enabled for your organization, attempting to edit this field will raise an API Error. The &ldquo;employee_id&rdquo; element exists in both the &ldquo;user&rdquo; element as a look-up mechanism and in the &ldquo;payload&rdquo; element as a patching mechanism.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/</code></p>
+
+<h2 id="patch-disable-user">PATCH: Disable User</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v2/users/disable'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -14416,179 +14443,29 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Disable a user. The V2 endpoint allows you to disable a user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number.</p>
+<p>Disable a user. This endpoint allows you to disable a user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number. It is safe to call this method on a user that is currently disabled. If the user is already disabled, nothing happens.</p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/disable</code></p>
 
-<h2 id="patch-edit-user-v1">PATCH: Edit User (v1)</h2>
-<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
--H <span class="s2">"Content-Type: application/json"</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>The above command returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Edit a user&rsquo;s basic information.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}</code></p>
-
-<h3 id="headers">Headers</h3>
-
-<table><thead>
-<tr>
-<td>Header</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
-</tbody></table>
-
-<h3 id="json-body-parameters">JSON Body Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>first_name</td><td>No</td><td>string</td><td>The user&rsquo;s new first name. If included, this cannot be blank.</td></tr>
-<tr>
-<td>last_name</td><td>No</td><td>string</td><td>The user&rsquo;s new last name. If included, this cannot be blank.</td></tr>
-<tr>
-<td>employee_id*</td><td>No</td><td>string</td><td>The user&rsquo;s external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.</td></tr>
-</tbody></table>
-
-<p>* - If the employee_id feature is not enabled for your organization, attempting to edit this field will raise an API Error.</p>
-
-<h2 id="patch-edit-user-v2">PATCH: Edit User (v2)</h2>
-<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v2/users/
--H "Content-Type: application/json"
--H "On-Behalf-Of: {greenhouse user ID}"
--H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"
-</span></code></pre>
-
-<blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
-  </span><span class="p">}</span><span class="w"> 
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>Note that the &ldquo;user&rdquo; element may also contain &ldquo;user_id&rdquo; or &ldquo;employee_id&rdquo; as in the v2/enable and v2/disable endpoints.</p>
-
-<p>The above command returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User updated"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Edit a user&rsquo;s basic information. The V2 endpoint allows you to look up the user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number. </p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/</code></p>
-
-<h2 id="patch-enable-user-v1">PATCH: Enable User (v1)</h2>
-<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"primary_email_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@email.org"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"bob@email.org"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"linked_candidate_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="mi">654</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Enable a user. It is safe to call this method on a user that is currently enabled. If the user is already enabled, nothing happens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
-
-<h3 id="headers">Headers</h3>
-
-<table><thead>
-<tr>
-<td>Header</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
-</tbody></table>
-
-<h2 id="patch-enable-user-v2">PATCH: Enable User (v2)</h2>
+<h2 id="patch-enable-user">PATCH: Enable User</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v2/users/enable'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
 <blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="err">-</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">-</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11234</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="err">-</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">-</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-123"</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
 <p>The above command returns a JSON response, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -14609,11 +14486,21 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Enable a user. The V2 endpoint allows you to enable a user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number.</p>
+<p>Enable a user. You may enable a user via their Greenhouse user id, their internal employee id, or their e-mail address in Greenhouse. Any of the e-mail addresses tied to the user&rsquo;s account can be used. The user information must be provided in a JSON body. Only one of user_id, employee_id (if available), or e-mail address may be provided. Employee id or e-mail address must be a string. User ID must be a number. It is safe to call this method on a user that is currently enabled. If the user is already enabled, nothing happens.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v2/users/enable</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h2 id="post-add-user">POST: Add User</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
