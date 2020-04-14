@@ -12781,7 +12781,7 @@ X-RateLimit-Remaining: 49
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p>[DEPRECATED] ~~<code class="prettyprint">POST https://harvest.greenhouse.io/v1/scheduled_interviews</code>~~</p>
+<p>[DEPRECATED] <del><code class="prettyprint">POST https://harvest.greenhouse.io/v1/scheduled_interviews</code></del></p>
 
 <p>POST <code class="prettyprint">https://harvest.greenhouse.io/v2/scheduled_interviews</code></p>
 
@@ -12820,7 +12820,7 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <aside class="notice">
-    There may be a delay between when Greenhouse receives the POST: Create Scheduled Interview request and when Greenhouse creates the full Scheduled Interview record, which will result in a truncated API response. The truncated response body will contain the id of the newly Scheduled Interview. You can retrieve the full Scheduled Interview record by requesting the Scheduled Interview ID with the GET: Scheduled Interview endpoint. If you receive a 404 error from the GET: Scheduled Interview endpoint, this indicates that the full Scheduled Interview record is still not available. Until the Scheduled Interview record has been made fully-available in the API, please continue to request the record until the API returns a successful response. Our recommendation is to perform this check every 30 seconds until the data becomes available.
+    For the V1 endpoint only: There may be a delay between when Greenhouse receives the POST: Create Scheduled Interview request and when Greenhouse creates the full Scheduled Interview record, which will result in a truncated API response. The truncated response body will contain the id of the newly Scheduled Interview. You can retrieve the full Scheduled Interview record by requesting the Scheduled Interview ID with the GET: Scheduled Interview endpoint. If you receive a 404 error from the GET: Scheduled Interview endpoint, this indicates that the full Scheduled Interview record is still not available. Until the Scheduled Interview record has been made fully-available in the API, please continue to request the record until the API returns a successful response. Our recommendation is to perform this check every 30 seconds until the data becomes available. This issue has been resolved in V2.
 </aside>
 
 <h2 id="patch-update-scheduled-interview">PATCH: Update Scheduled Interview</h2>
@@ -12901,7 +12901,7 @@ only update Scheduled Interviews in the following statues: Scheduled, Awaiting F
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p>DEPRECATED ~~<code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code>~~</p>
+<p>DEPRECATED <del><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code></del></p>
 
 <p><code class="prettyprint">PATCH:</code>PATCH https://harvest.greenhouse.io/v2/scheduled_interviews/{id}`</p>
 
