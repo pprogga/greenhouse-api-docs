@@ -87,7 +87,7 @@ analytics.page()
 <h2 id="jsonp">JSONP</h2>
 <pre class="highlight html"><code><span class="nt">&lt;script
   </span><span class="na">type=</span><span class="s">"text/javascript"</span>
-  <span class="na">src=</span><span class="s">"https://api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;</span>
+  <span class="na">src=</span><span class="s">"https://boards-api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
 
@@ -100,7 +100,7 @@ Job Board data is publicly available, so authentication is not required for any 
 </aside>
 
 <p>Only the application submission endpoint
-(<code class="prettyprint">POST https://api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code>) requires Basic Auth. The Job Board API Key must be <strong>Base64 encoded</strong> before it can be used to post applications.
+(<code class="prettyprint">POST https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code>) requires Basic Auth. The Job Board API Key must be <strong>Base64 encoded</strong> before it can be used to post applications.
 <a href="#submit-an-application">Read more</a>.</p>
 
 <h2 id="libraries">Libraries</h2>
