@@ -263,6 +263,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>May 5, 2020 12:00:00PM</td><td>Added &ldquo;interview_step&rdquo; field to the scorecards response. This provides the &ldquo;ID&rdquo; of the existing &ldquo;interview&rdquo; field. The &ldquo;name&rdquo; sub-element of the &ldquo;interview_step&rdquo; element should match the current &ldquo;interview&rdquo; element. The &ldquo;interview&rdquo; field is maintained for backward compatibility.</td></tr>
+<tr>
 <td>Apr 22, 2020 09:00:00AM</td><td>Added external_id as field to the <a href="#the-custom-field-options-object">Custom Field Option object</a>.</td></tr>
 <tr>
 <td>Apr 13, 2020 09:00:00AM</td><td>The V1 endpoints for [PATCH: Edit User], [PATCH: Disable User], and [PATCH: Enable User] have been deprecated. Users should move to the V2 endpoints as soon as convenient. This change was made to take advantage of additional ways to look up users in Greenhouse.</td></tr>
@@ -3924,7 +3926,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>activity_feed_notes</td><td>No</td><td>Array</td><td>An array of activity feed objects. See <a href="#post-add-note">Add Note</a> for parameters.</td></tr>
 <tr>
-<td>applications</td><td>Yes</td><td>Array</td><td>An array of application objects. At least one required. See <a href="#post-add-candidate-application">Add Application</a> for parameters.</td></tr>
+<td>applications</td><td>Yes</td><td>Array</td><td>An array of application objects. At least one required. See <a href="#post-add-application-to-candidate-prospect">Add Application</a> for parameters.</td></tr>
 </tbody></table>
 
 <aside class="notice">
@@ -12995,6 +12997,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3456</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-18T16:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -13133,6 +13139,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3456</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-18T16:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -13240,6 +13250,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Behavioral Phone Interview"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">433</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Behavioral Phone Interview"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14271904</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23558552</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T17:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -13384,6 +13398,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2131415</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23558552</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-18T16:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -13491,6 +13509,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T19:07:08.295Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Behavioral Phone Interview"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">433</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Behavioral Phone Interview"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14271904</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23558552</span><span class="p">,</span><span class="w">
     </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-08T17:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -13628,6 +13650,10 @@ only delete Scheduled Interviews in the following statues: Scheduled, Awaiting F
   </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-22T19:52:38.384Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview_step"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2131415</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23558552</span><span class="p">,</span><span class="w">
   </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-18T16:00:00.000Z"</span><span class="p">,</span><span class="w">
