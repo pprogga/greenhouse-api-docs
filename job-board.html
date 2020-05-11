@@ -322,6 +322,13 @@ When submitting a job application, you will use the <code>id</code> field to spe
       </span><span class="nt">"value_type"</span><span class="p">:</span><span class="s2">"text"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Some value"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"data_compliance"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdpr"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"requires_consent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"retention_period"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -428,6 +435,10 @@ can be used to dynamically construct your own job application form.</p>
 <h3 id="demographic-questions">Demographic Questions</h3>
 
 <p>For organizations using Greenhouse Inclusion, the response may contain demographic questions. Each question contains an array of answer options that may be rendered as checkboxes or a multi-select. The candidate may select zero, one, or more answer options per question. If an answer option is selected that has <code class="prettyprint">free_form</code> set to <code class="prettyprint">true</code>, the candidate must be allowed to type a free-form response. The free-form response is optional.</p>
+
+<h3 id="data-compliance">Data Compliance</h3>
+
+<p>For organizations with GDPR rules configured and operating with a legal basis of explicit consent, the response may contain data_compliance objects. These objects will include whether a response is required and the data retention period in days as configured by the appropriate rule.</p>
 
           <h1 id="offices">Offices</h1>
 
