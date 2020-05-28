@@ -323,34 +323,41 @@ A collection of Onboarding employee records. The following arguments are depreac
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
-after | [String](#string) | Returns the elements in the list that come after the specified cursor. | 
-before | [String](#string) | Returns the elements in the list that come before the specified cursor. | 
-customFieldValues | [\[CustomFieldValuesInput\]](#customfieldvaluesinput) | filter employees by their custom field values | 
-dateOfBirth | [DateFilter](#datefilter) | DEPRECATED. Use dateOfBirthFilter instead | 
-dateOfBirthFilter | [DateOfBirthFilter](#dateofbirthfilter) | filter employees by their date of birth | 
-departmentFilter | [DepartmentFilter](#departmentfilter) | filter employees by their department | 
-departmentIds | [\[Int\]](#int) | DEPRECATED. Use departmentFilter instead | 
-emailFilter | [EmailFilter](#emailfilter) | filter employees by their email | 
-emails | [\[String\]](#string) | DEPRECATED. Use emailFilter instead | 
-employmentStatusFilter | [EmploymentStatusFilter](#employmentstatusfilter) | filter employees by their employment status | 
-employmentStatuses | [\[EmploymentStatus\]](#employmentstatus) | DEPRECATED. Use employmentStatusFilter instead | 
-first | [Int](#int) | Returns the first _n_ elements from the list. | 
-hrManagerFilter | [HrManagerFilter](#hrmanagerfilter) | filter employees by their hr manager | 
-hrManagerIds | [\[Int\]](#int) | DEPRECATED. Use hrManagerFilter instead | 
-last | [Int](#int) | Returns the last _n_ elements from the list. | 
-locationFilter | [LocationFilter](#locationfilter) | filter employees by their location | 
-locationIds | [\[Int\]](#int) | DEPRECATED. Use locationFilter instead | 
-managerFilter | [ManagerFilter](#managerfilter) | filter employees by their manager | 
-managerIds | [\[Int\]](#int) | DEPRECATED. Use managerFilter instead | 
-personalEmailFilter | [PersonalEmailFilter](#personalemailfilter) | filter employees by their personal email | 
-personalEmails | [\[String\]](#string) | DEPRECATED. Use personalEmailFilter instead | 
-startDate | [DateFilter](#datefilter) | DEPRECATED. Use startDateFilter instead | 
-startDateFilter | [StartDateFilter](#startdatefilter) | filter employees by their start date | 
-titleFilter | [TitleFilter](#titlefilter) | filter employees by their title | 
-titles | [\[String\]](#string) | DEPRECATED. Use titleFilter instead | 
-updatedAt | [DateTimeFilter](#datetimefilter) | filter employees based on when they were last updated | 
-workCountryCodeFilter | [WorkCountryCodeFilter](#workcountrycodefilter) | filter employees by their work country code | 
-workCountryCodes | [\[String\]](#string) | DEPRECATED. Use WorkCountryCodeFilter instead | 
+after | [String](#string) | Returns the elements in the list that come after the specified cursor. |
+before | [String](#string) | Returns the elements in the list that come before the specified cursor. |
+customFieldValues | [\[CustomFieldValuesInput\]](#customfieldvaluesinput) | filter employees by their custom field values |
+dateOfBirth | [DateFilter](#datefilter) | DEPRECATED. Use dateOfBirthFilter instead |
+dateOfBirthFilter | [DateOfBirthFilter](#dateofbirthfilter) | filter employees by their date of birth |
+departmentFilter | [DepartmentFilter](#departmentfilter) | filter employees by their department |
+departmentIds | [\[Int\]](#int) | DEPRECATED. Use departmentFilter instead |
+emailFilter | [EmailFilter](#emailfilter) | filter employees by their email |
+emails | [\[String\]](#string) | DEPRECATED. Use emailFilter instead |
+employmentStatusFilter | [EmploymentStatusFilter](#employmentstatusfilter) | filter employees by their employment status |
+employmentStatuses | [\[String\]](#string) | DEPRECATED. Use employmentStatusFilter instead |
+first | [Int](#int) | Returns the first _n_ elements from the list. |
+hrManagerFilter | [HrManagerFilter](#hrmanagerfilter) | filter employees by their hr manager |
+hrManagerIds | [\[Int\]](#int) | DEPRECATED. Use hrManagerFilter instead |
+last | [Int](#int) | Returns the last _n_ elements from the list. |
+locationFilter | [LocationFilter](#locationfilter) | filter employees by their location |
+locationIds | [\[Int\]](#int) | DEPRECATED. Use locationFilter instead |
+managerFilter | [ManagerFilter](#managerfilter) | filter employees by their manager |
+managerIds | [\[Int\]](#int) | DEPRECATED. Use managerFilter instead |
+personalEmailFilter | [PersonalEmailFilter](#personalemailfilter) | filter employees by their personal email |
+personalEmails | [\[String\]](#string) | DEPRECATED. Use personalEmailFilter instead |
+startDate | [DateFilter](#datefilter) | DEPRECATED. Use startDateFilter instead |
+startDateFilter | [StartDateFilter](#startdatefilter) | filter employees by their start date |
+titleFilter | [TitleFilter](#titlefilter) | filter employees by their title |
+titles | [\[String\]](#string) | DEPRECATED. Use titleFilter instead |
+updatedAt | [DateTimeFilter](#datetimefilter) | filter employees based on when they were last updated |
+workCountryCodeFilter | [WorkCountryCodeFilter](#workcountrycodefilter) | filter employees by their work country code |
+workCountryCodes | [\[String\]](#string) | DEPRECATED. Use WorkCountryCodeFilter instead |
+## employmentStatuses
+A list of employment status custom field options
+
+Argument | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+first | [Int](#int) | Returns the first _n_ elements from the list. |
+last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## location \([Location](#location)\)
 A single location
 
@@ -952,34 +959,34 @@ A single Employee that works for your company. Employees have first class fields
 Field | Type | Description
 --------- | ----------- | -----------
 about | [String](#string) | A brief description of the employee. This information is displayed on both the employee's profile and is also featured prominently in the Welcome Experience for any new hires that report to this employee.
-createdAt | [DateTime!](#datetime) | 
+createdAt | [DateTime!](#datetime) |
 customFieldValues | [\[CustomFieldValue!\]](#customfieldvalue) | A list of all other profile information for this employee. Administrators can configure these fields on the [Settings > Custom Fields](https://onboarding.greenhouse.io/settings/fields) page.
 dateOfBirth | [Date](#date) | Note that only administrators can see the birth year for employees
 dateOfTermination | [Date](#date) | This information is only available on terminated employees
-department | [Department](#department) | 
+department | [Department](#department) |
 documents | [\[Document!\]](#document) | These are documents that came over from Greenhouse Recruiting or were attached directly to the employee profile. This does _not_ include E-Signature requests.
 email | [String](#string) | The employee's work email. They need this in order to sign in
-employmentStatus | [EmploymentStatus!](#employmentstatus) | 
-firstName | [String](#string) | 
+firstName | [String](#string) |
+employmentStatus | [String](#string) |
 greenhouseRecruitingData | [GreenhouseRecruitingData](#greenhouserecruitingdata) | The Greenhouse Recruiting 'hired' webhook data
 hrManager | [Employee](#employee) | The employee's HR Manager.
-id | [ID!](#id) | 
-lastName | [String](#string) | 
-location | [Location](#location) | 
+id | [ID!](#id) |
+lastName | [String](#string) |
+location | [Location](#location) |
 manager | [Employee](#employee) | This employee's direct manager.
-middleName | [String](#string) | 
-otherCriteria | [\[OtherCriterion!\]](#othercriterion) | 
+middleName | [String](#string) |
+otherCriteria | [\[OtherCriterion!\]](#othercriterion) |
 personalEmail | [String](#string) | The employee's personal email.
-phoneNumber | [String](#string) | 
+phoneNumber | [String](#string) |
 preferredFirstName | [String](#string) | This is the name that your employee prefers to go by. If this value is set, Greenhouse Onboarding will display this name everywhere in the product instead of the employee's legal name.
 preferredLastName | [String](#string) | This is the name that your employee prefers to go by. If this value is set, Greenhouse Onboarding will display this name everywhere in the product instead of the employee's legal name.
 profileImage | [File](#file) | A file containing the employee's profile image. This image is displayed in emails, reports and directory pages.
 signatureRequests | [\[SignatureRequest!\]](#signaturerequest) | These are E-Signature requests initiated through Greenhouse Onboarding. Keep in mind that these requests can be in a number of different states in their lifecycle and may not always have a signed document available to download.
-startDate | [Date](#date) | 
-suffix | [String](#string) | 
+startDate | [Date](#date) |
+suffix | [String](#string) |
 title | [String](#string) | The employee's job title.
-updatedAt | [DateTime!](#datetime) | 
-workCountryCode | [String!](#string) | 
+updatedAt | [DateTime!](#datetime) |
+workCountryCode | [String!](#string) |
 
 ## EmployeeConnection
 The connection type for Employee.
@@ -1102,27 +1109,27 @@ A Pending Hire Record
 
 Field | Type | Description
 --------- | ----------- | -----------
-about | [String](#string) | 
-createdAt | [DateTime](#datetime) | 
-customFieldValues | [\[CustomFieldValue\]](#customfieldvalue) | 
-dateOfBirth | [Date](#date) | 
-department | [Department](#department) | 
-email | [String](#string) | 
-employmentStatus | [EmploymentStatus](#employmentstatus) | 
-firstName | [String](#string) | 
-hrManager | [Employee](#employee) | 
-id | [ID](#id) | 
-lastName | [String](#string) | 
-location | [Location](#location) | 
-manager | [Employee](#employee) | 
-personalEmail | [String](#string) | 
-phoneNumber | [String](#string) | 
-preferredFirstName | [String](#string) | 
-preferredLastName | [String](#string) | 
-startDate | [Date](#date) | 
-title | [String](#string) | 
-updatedAt | [DateTime](#datetime) | 
-workCountryCode | [String](#string) | 
+about | [String](#string) |
+createdAt | [DateTime](#datetime) |
+customFieldValues | [\[CustomFieldValue\]](#customfieldvalue) |
+dateOfBirth | [Date](#date) |
+department | [Department](#department) |
+email | [String](#string) |
+employmentStatus | [String](#string) |
+firstName | [String](#string) |
+hrManager | [Employee](#employee) |
+id | [ID](#id) |
+lastName | [String](#string) |
+location | [Location](#location) |
+manager | [Employee](#employee) |
+personalEmail | [String](#string) |
+phoneNumber | [String](#string) |
+preferredFirstName | [String](#string) |
+preferredLastName | [String](#string) |
+startDate | [Date](#date) |
+title | [String](#string) |
+updatedAt | [DateTime](#datetime) |
+workCountryCode | [String](#string) |
 
 ## RateLimit
 Information about your current API quota
@@ -1262,25 +1269,25 @@ Specify the properties of a new PendingHire
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
-about | [String](#string) |  | 
-customFieldValues | [\[UpdateCustomFieldValue\]](#updatecustomfieldvalue) |  | 
-dateOfBirth | [Date](#date) |  | 
-department | [ID](#id) |  | 
-email | [String](#string) |  | 
-employmentStatus | [EmploymentStatus](#employmentstatus) |  | 
+about | [String](#string) |  |
+customFieldValues | [\[UpdateCustomFieldValue\]](#updatecustomfieldvalue) |  |
+dateOfBirth | [Date](#date) |  |
+department | [ID](#id) |  |
+email | [String](#string) |  |
+employmentStatus | [String](#string) |  |
 firstName | [String!](#string) |  | Required
-hrManager | [ID](#id) |  | 
+hrManager | [ID](#id) |  |
 lastName | [String!](#string) |  | Required
-location | [ID](#id) |  | 
-manager | [ID](#id) |  | 
-middleName | [String](#string) |  | 
-personalEmail | [String](#string) |  | 
-phoneNumber | [String](#string) |  | 
-preferredFirstName | [String](#string) |  | 
-preferredLastName | [String](#string) |  | 
-startDate | [Date](#date) |  | 
-suffix | [String](#string) |  | 
-title | [String](#string) |  | 
+location | [ID](#id) |  |
+manager | [ID](#id) |  |
+middleName | [String](#string) |  |
+personalEmail | [String](#string) |  |
+phoneNumber | [String](#string) |  |
+preferredFirstName | [String](#string) |  |
+preferredLastName | [String](#string) |  |
+startDate | [Date](#date) |  |
+suffix | [String](#string) |  |
+title | [String](#string) |  |
 workCountryCode | [String!](#string) |  | Required
 
 ## CustomFieldValuesInput
@@ -1356,9 +1363,9 @@ Filter employees based on their Employment Status
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
-anyValue | [Boolean](#boolean) |  | 
-employmentStatuses | [\[EmploymentStatus\]](#employmentstatus) |  | 
-noValue | [Boolean](#boolean) |  | 
+anyValue | [Boolean](#boolean) |  |
+employmentStatuses | [\[String\]](#string) |  |
+noValue | [Boolean](#boolean) |  |
 
 ## HrManagerFilter
 Filter employees based on their HR Manager
@@ -1439,28 +1446,28 @@ The input object used to update an [Employee](#employee).
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
-about | [String](#string) |  | 
-customFieldValues | [\[UpdateCustomFieldValue\]](#updatecustomfieldvalue) |  | 
-dateOfBirth | [Date](#date) |  | 
-department | [ID](#id) |  | 
-email | [String](#string) |  | 
-employmentStatus | [EmploymentStatus](#employmentstatus) |  | 
-firstName | [String](#string) |  | 
-hrManager | [ID](#id) |  | 
-lastName | [String](#string) |  | 
-location | [ID](#id) |  | 
-manager | [ID](#id) |  | 
-middleName | [String](#string) |  | 
-otherCriteria | [\[ID\]](#id) |  | 
-personalEmail | [String](#string) |  | 
-phoneNumber | [String](#string) |  | 
-preferredFirstName | [String](#string) |  | 
-preferredLastName | [String](#string) |  | 
-profileImage | [URL](#url) |  | 
-startDate | [Date](#date) |  | 
-suffix | [String](#string) |  | 
-title | [String](#string) |  | 
-workCountryCode | [String](#string) |  | 
+about | [String](#string) |  |
+customFieldValues | [\[UpdateCustomFieldValue\]](#updatecustomfieldvalue) |  |
+dateOfBirth | [Date](#date) |  |
+department | [ID](#id) |  |
+email | [String](#string) |  |
+employmentStatus | [String](#string) |  |
+firstName | [String](#string) |  |
+hrManager | [ID](#id) |  |
+lastName | [String](#string) |  |
+location | [ID](#id) |  |
+manager | [ID](#id) |  |
+middleName | [String](#string) |  |
+otherCriteria | [\[ID\]](#id) |  |
+personalEmail | [String](#string) |  |
+phoneNumber | [String](#string) |  |
+preferredFirstName | [String](#string) |  |
+preferredLastName | [String](#string) |  |
+profileImage | [URL](#url) |  |
+startDate | [Date](#date) |  |
+suffix | [String](#string) |  |
+title | [String](#string) |  |
+workCountryCode | [String](#string) |  |
 
 ## UpdateLocationInput
 The input object used to update a [Location](#location).
@@ -1581,18 +1588,6 @@ MULTIPLE_CHOICE | Displayed as a dropdown. Stored as a String.
 MULTIPLE_SELECT | Displayed as a tag field. Stored as an Array of Strings.
 TEAM | Displayed as a dropdown of teams. Stored as a Team ID.
 TEXT | Displayed as a single line text field. Stored as a String.
-
-## EmploymentStatus
-Possible employment statuses for an employee
-
-Value | Description
---------- | ---------
-CONTRACTOR | 
-FULL_TIME | 
-INTERN | 
-PART_TIME | 
-TEMPORARY | 
-TERMINATED | 
 
 ## SignatureRequestStatus
 Possible status values for a Signature Request
