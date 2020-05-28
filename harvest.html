@@ -263,6 +263,8 @@ X-RateLimit-Remaining: 49
 <td>Date</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>May 28, 2020 05:00:00PM</td><td>Candidate photos have been removed from Greenhouse and will no longer be accepted as a field to be anonymized in <a href="#put-anonymize-candidate">PUT Anonymize Candidates</a></td></tr>
+<tr>
 <td>May 5, 2020 12:00:00PM</td><td>Added &ldquo;interview_step&rdquo; field to the scorecards response. This provides the &ldquo;ID&rdquo; of the existing &ldquo;interview&rdquo; field. The &ldquo;name&rdquo; sub-element of the &ldquo;interview_step&rdquo; element should match the current &ldquo;interview&rdquo; element. The &ldquo;interview&rdquo; field is maintained for backward compatibility.</td></tr>
 <tr>
 <td>Apr 22, 2020 09:00:00AM</td><td>Added external_id as field to the <a href="#the-custom-field-options-object">Custom Field Option object</a>.</td></tr>
@@ -2436,7 +2438,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
@@ -2704,6 +2706,8 @@ X-RateLimit-Remaining: 49
 <td>keyed_custom_fields</td><td>This contains the same information as custom_fields but formatted in a different way that includes more information.  This will tell you the type of custom field data to expect, the text name of custom field, and the value.  The key of this hash is the custom field&rsquo;s immutable field key, which will not change even if the name of the custom field is changed in Greenhouse.</td></tr>
 <tr>
 <td>linked_user_ids</td><td>If the candidate is an internal applicant, this returns the Greenhouse user ID of the candidate.</td></tr>
+<tr>
+<td>photo_url</td><td>Note: this field has been removed from Greenhouse and will always be null. For backwards compatibility, the field will remain in API payloads</td></tr>
 </tbody></table>
 
 <h2 id="get-list-candidates">GET: List Candidates</h2>
@@ -2725,7 +2729,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
@@ -2969,7 +2973,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.497Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_27_2017.pdf"</span><span class="p">,</span><span class="w">
@@ -3339,7 +3343,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:54:34.257Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:54:34.243Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_28_2017.pdf"</span><span class="p">,</span><span class="w">
@@ -4793,7 +4797,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T13:36:04.725Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T13:31:37.929Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John_Locke_Offer_Packet_09_28_2017.pdf"</span><span class="p">,</span><span class="w">
@@ -4928,7 +4932,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>fields</td><td>Yes</td><td>comma-delimited string</td><td>The set of field names that should be anonymized on the candidate from the following list: full_name, current_company, current_title, tags, phone_numbers, emails, social_media_links, websites, addresses, location, custom_candidate_fields, source, recruiter, coordinator, attachments, application_questions, referral_questions, notes, rejection_notes, email_addresses, activity_items, innotes, inmails, rejection_reason, scorecards_and_interviews, offers, credited_to, headline, all_offer_versions, follow_up_reminders, candidate_photo, custom_application_fields, education, employment, candidate_stage_data, prospect_owner, custom_rejection_question_fields, touchpoints, prospect_pool_and_stage, prospect_jobs, prospect_offices, prospect_offices_and_departments, and third_party_integrations</td></tr>
+<td>fields</td><td>Yes</td><td>comma-delimited string</td><td>The set of field names that should be anonymized on the candidate from the following list: full_name, current_company, current_title, tags, phone_numbers, emails, social_media_links, websites, addresses, location, custom_candidate_fields, source, recruiter, coordinator, attachments, application_questions, referral_questions, notes, rejection_notes, email_addresses, activity_items, innotes, inmails, rejection_reason, scorecards_and_interviews, offers, credited_to, headline, all_offer_versions, follow_up_reminders, custom_application_fields, education, employment, candidate_stage_data, prospect_owner, custom_rejection_question_fields, touchpoints, prospect_pool_and_stage, prospect_jobs, prospect_offices, prospect_offices_and_departments, and third_party_integrations</td></tr>
 </tbody></table>
 
 <h2 id="put-merge-candidates">PUT: Merge Candidates</h2>
