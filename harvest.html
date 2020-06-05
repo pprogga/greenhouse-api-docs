@@ -5185,7 +5185,7 @@ X-RateLimit-Remaining: 49
 <h2 id="the-custom-field-object">The custom field object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Field Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seniority Level"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"field_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"value_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select"</span><span class="p">,</span><span class="w">
@@ -5194,16 +5194,36 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"require_approval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"trigger_new_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_field_name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seniority of this role"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expose_in_job_board_api"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"api_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11915</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, New York, United States"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"primary_contact_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_office_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"child_office_external_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"template_token_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{SENIORITY}}"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_field_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name One"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Junior"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name-one"</span><span class="w">
+      </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jr"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name Two"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Senior"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -5224,7 +5244,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>active</td><td>Boolean value which is false if the custom field has been deleted, true otherwise.</td></tr>
 <tr>
-<td>field_type</td><td>One of job, candidate, application, offer, rejection_question, referral_question. This is also included in the URL as an argument, which will return only custom fields that match the given type.</td></tr>
+<td>field_type</td><td>One of job, candidate, application, offer, opening, rejection_question, referral_question. This is also included in the URL as an argument, which will return only custom fields that match the given type.</td></tr>
 <tr>
 <td>priority</td><td>Numeric field used for ordering in Greenhouse.</td></tr>
 <tr>
@@ -5234,7 +5254,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>required</td><td>The object this field exists on can not be saved if this value is not set.</td></tr>
 <tr>
-<td>require_approval</td><td>Only applicable to job custom fields, changes to this fields requires an approval flow in Greenhouse to be re-done.</td></tr>
+<td>require_approval</td><td>Only applicable to job and opening custom fields, changes to this fields requires an approval flow in Greenhouse to be re-done.</td></tr>
 <tr>
 <td>trigger_new_version</td><td>Only applicable to offer custom fields, changes to this field creates a new offer version.</td></tr>
 <tr>
@@ -5245,6 +5265,18 @@ X-RateLimit-Remaining: 49
 <td>custom_field_options.priority</td><td>Numeric value used for ordering the custom field options.</td></tr>
 <tr>
 <td>custom_field_options.external_id</td><td>String value, the external_id for the custom field option</td></tr>
+<tr>
+<td>description</td><td>The custom field&rsquo;s description</td></tr>
+<tr>
+<td>expose_in_job_board_api</td><td>Boolean.  Only relevant for Job custom fields. If true, then the field will be shown in the Job Board API.</td></tr>
+<tr>
+<td>api_only</td><td>Boolean.  Only relevant for Job custom fields.  If true, this custom field can only be edited from the API.</td></tr>
+<tr>
+<td>offices</td><td>Only relevant for Job, Opening, and Offer custom fields. If this custom field only applies to a subset of offices, then this list contains each office.  Otherwise, if the list is empty, it applies to all offices.</td></tr>
+<tr>
+<td>departments</td><td>Only relevant for Job, Opening, and Offer custom fields. If this custom field only applies to a subset of departments, then this list contains each department.  Otherwise, if the list is empty, it applies to all departments.</td></tr>
+<tr>
+<td>template_token_string</td><td>Token string used in email and offer document templates</td></tr>
 </tbody></table>
 
 <h2 id="get-list-custom-fields">GET: List Custom Fields</h2>
@@ -5268,6 +5300,12 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"require_approval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"trigger_new_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_field_name"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field description"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expose_in_job_board_api"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"api_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"template_token_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{FIELD1}}"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"custom_field_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
@@ -5335,6 +5373,12 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"require_approval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"trigger_new_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_field_name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field description"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expose_in_job_board_api"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"api_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"template_token_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{FIELD1}}"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_field_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
